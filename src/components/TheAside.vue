@@ -4,16 +4,13 @@
 		<nav class="nav">
 			<ul class="nav__list nav__list--pages">
 				<li class="nav__item">
-					<router-link to="/" class="nav__link">Все ролики</router-link>
+					<a href="#" @click.prevent="changeCategory(0)" class="nav__link">Все ролики</a>
 				</li>
 				<li class="nav__item">
 					<router-link to="/history" class="nav__link">История</router-link>
 				</li>
 			</ul>
 			<ul class="nav__list">
-				<li class="nav__item">
-					<a href="#" @click.prevent="changeCategory(0)" class="nav__link">Все категории</a>
-				</li>
 				<li v-for="cat in categories" :key="cat.title" class="nav__item">
 					<a href="#" @click.prevent="changeCategory(cat.id)" class="nav__link">{{ cat.title }}</a>
 				</li>
@@ -31,9 +28,9 @@ export default {
 		const router = useRouter()
 		const categories = store.getters.getCategories
 
-		const changeCategory = async id => {
-			await router.push('/')
+		const changeCategory = id => {
 			store.commit('changeCurrentCategory', +id)
+			router.push('/')
 		}
 		
 		return { categories, changeCategory }

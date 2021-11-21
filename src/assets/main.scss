@@ -132,6 +132,19 @@ body {
 	width: 100%;
 }
 
+@media screen and (max-width: $bp-sm) {
+	.main {margin-left: 0;}
+	.header {left: 0;}
+	.aside {display: none;}
+	.container {padding: 20px 0;}
+	.video__item {border-radius: 0 !important;}
+	.video-page__player-wrap {
+		border-radius: 0 !important;
+		min-height: 300px;
+		height: auto !important;
+	}
+}
+
 @import './styles/video';
 @import './styles/video-page';
 
