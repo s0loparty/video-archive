@@ -1,6 +1,6 @@
 <template>
 	<div class="video">
-		<h2 class="vide__title">
+		<h2 class="video__header-title">
 			All videos <span v-show="currentCategory">({{ categories.find(i => i.id === currentCategory)?.title }})</span>
 		</h2>
 		<div class="video__list">

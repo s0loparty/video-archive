@@ -9,6 +9,14 @@
 	--color-dark: #444;
 }
 
+$space: 40px;
+$bp-xl2: 1600px - $space;
+$bp-xl1: 1400px - $space;
+$bp-xl: 1200px - $space;
+$bp-lg: 992px - $space;
+$bp-md: 768px - $space;
+$bp-sm: 576px - $space;
+
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -123,54 +131,9 @@ body {
 	// flex: 1 0 0;
 	width: 100%;
 }
-.video { }
-.vide__title {
-	margin-top: 0;
-	margin-bottom: 20px;
-}
-.video__list {
-	display: grid;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-	grid-template-columns: auto auto auto auto;
-}
-.video__item {
-	display: block;
-	min-height: 160px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	position: relative;
-	overflow: hidden;
 
-	&:hover .video__preview {
-		transform: scale(1.2);
-	}
-}
-.video__preview {
-	position: absolute;
-	content: '';
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	background-color: var(--color-secondary);
-	background-image: url(https://via.placeholder.com/300x160);
-	transition: all .2s;
-}
-.video__title {
-	box-sizing: border-box;
-	position: absolute;
-	z-index: 5;
-	bottom: 0;
-	background-color: #0000009e;
-	width: 100%;
-	padding: 5px;
-	text-decoration: none;
-	color: var(--color-white);
-}
+@import './styles/video';
+@import './styles/video-page';
 
 
 /* ===== Scrollbar CSS ===== */
