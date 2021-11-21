@@ -156,6 +156,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	background-color: var(--color-secondary);
 	background-image: url(https://via.placeholder.com/300x160);
 	transition: all .2s;
 }
@@ -164,7 +165,7 @@ body {
 	position: absolute;
 	z-index: 5;
 	bottom: 0;
-	background-color: #0000007d;
+	background-color: #0000009e;
 	width: 100%;
 	padding: 5px;
 	text-decoration: none;
@@ -181,7 +182,7 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-	width: 14px;
+	width: 12px;
 }
 
 *::-webkit-scrollbar-track {
