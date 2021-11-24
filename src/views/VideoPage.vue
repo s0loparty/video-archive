@@ -2,7 +2,7 @@
 	<div class="video-page">
 		<div class="video-page__content">
 			<div class="video-page__player-wrap">
-				<iframe :src="video.source" frameborder="0" class="video-page__player"></iframe>
+				<iframe :src="video.source" frameborder="0" allowfullscreen class="video-page__player"></iframe>
 			</div>
 			<div class="video-page__info">
 				<div class="video-page__title">{{ video.title }}</div>
@@ -19,7 +19,7 @@
 		<div class="video-page__history">
 			<p>итория просмотров</p>
 			<hr>
-			<VideoItem v-for="item in 7" :key="item" :id="item" :title="`[${item}] Lorem ipsum dolor sit.`"></VideoItem>
+			<VideoItem v-for="item in 7" :key="item" :id="item + 'asd'" :title="`[${item}] Lorem ipsum dolor sit.`"></VideoItem>
 		</div>
 	</div>
 </template>
