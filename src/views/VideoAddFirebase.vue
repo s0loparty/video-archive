@@ -82,7 +82,8 @@ export default {
 			
 			video.title = (arr.length === 3 ? arr[2] : arr[1]).replaceAll('_', ' ').slice(0, -4)
 			video.category = arr.length === 3 ? arr[1] : 'unknown'
-			video.source = newValue.link.split('&token')[0]
+			// video.source = newValue.link.split('&token')[0]
+			video.source = newValue.link
 
 			setInterval(() => {
 				canvasElement.value.getContext('2d').drawImage(videoElement.value, 0, 0, canvasElement.value.width, canvasElement.value.height)
