@@ -8,7 +8,7 @@
 					<form @submit.prevent="submit" class="form">
 						<div class="form__group">
 							<label for="googleLink" class="form__label">Ссылка на видео с Firebase</label>
-							<input v-model="video.link" type="text" id="googleLink" class="form__input">
+							<input v-model="fbLink" type="text" id="googleLink" class="form__input">
 						</div>
 						<div class="form__group">
 							<label for="title" class="form__label">Название</label>
@@ -25,39 +25,26 @@
 					</form>
 				</section>
 				<section style="flex: 1 0 0">
-					<div style="display: flex;flex-wrap:wrap;justify-content: space-between;">
-						<video :src="video.source" ref="videoElement" crossorigin="anonymous" controls autoplay muted></video>
-						<canvas ref="canvasElement"></canvas>
-					</div>
-					<div style="margin-top: 10px;">
-						<button @click="nextTime(5, 'back')">На 5 секунд назад</button>
-						<button @click="nextTime(5, 'next')">На 5 секунд вперед</button>
-					</div>
-					<hr>
-					<div style="display: flex;flex-wrap:wrap;">
-						<img 
-							v-for="img in images" 
-							:key="img" 
-							:src="img" 
-							style="width: 100px;height: 100px;margin-bottom: 5px;" 
-							crossorigin="anonymous"
-						/>
-					</div>
+					<video :src="video.source" ref="videoElement" controls autoplay muted></video>
 				</section>
 			</div>
+			<section id="canvases"></section>
 		</div>
 	</div>
 </template>
 
 <script>
 import { reactive, ref } from '@vue/reactivity'
-import { onMounted, watch } from '@vue/runtime-core'
+import { watch } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 
 export default {
 	setup() {
-		const canvasElement = ref(null)
+		const store = useStore()
+
 		const videoElement = ref(null)
-		const images = ref([])
+		const fbLink = ref('')
+		const categories = store.getters.getCategories
 		
 		const video = reactive({
 			title: '',
@@ -65,39 +52,44 @@ export default {
 			source: '',
 			category: '',
 		})
+		
 
-		onMounted(() => {
-			videoElement.value.style.width = '300px'
-			videoElement.value.style.height = '160px'
-			canvasElement.value.style.width = '300px'
-			canvasElement.value.style.height = '160px'
-		})
-
-		watch(video, async (newValue, oldVAlue) => {
-			if (!newValue.link) return
+		watch(fbLink, async (newValue, oldVAlue) => {
+			if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
 			
-			const res = await fetch(newValue.link.split('?alt')[0])
+			const res = await fetch(newValue.split('?alt')[0])
 			const data = await res.json()
 			const arr = data.name.split('/')
+			const name = data.name.replaceAll('_', ' ').slice(0, -4)
 			
-			video.title = (arr.length === 3 ? arr[2] : arr[1]).replaceAll('_', ' ').slice(0, -4)
-			video.category = arr.length === 3 ? arr[1] : 'unknown'
-			// video.source = newValue.link.split('&token')[0]
-			video.source = newValue.link
+			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
+			video.category = categories.find(i => name.indexOf(i.title) !== -1).title
+			video.source = newValue.split('&token')[0]
 
-			setInterval(() => {
-				canvasElement.value.getContext('2d').drawImage(videoElement.value, 0, 0, canvasElement.value.width, canvasElement.value.height)
+			videoElement.value.addEventListener('loadeddata', function() {
+				const duration = Math.floor(videoElement.value.duration)
+				const countPreviews = 30 // кол-во элементов
+				const oneTick = Math.floor(duration / countPreviews)
 
-				let image = new Image();
-				setTimeout(() => {
-					image.crossOrigin = 'anonymous'
-					console.log(canvasElement.value.toDataURL())
-				}, 0)
-				// const image = canvasElement.value.toDataURL()
-				// images.value.push(image)
-			}, 5000)
+				// this.play()
+				// https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%A3%D1%80%D0%BE%D0%BA%D0%B8_%D0%9E%D1%81%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%BC%D0%B0_%D1%81%D0%B8%D0%BB%D0%B0_%D0%BD%D0%B0%D1%88%D0%B8%D1%85_%D1%81%D0%BB%D0%BE%D0%B2_Ted_Ed.mp4?alt=media&token=497ed25d-5207-4054-891b-98af93c19722
 
-			// https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%A3%D1%80%D0%BE%D0%BA%D0%B8_%D0%9E%D1%81%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%BC%D0%B0_%D1%81%D0%B8%D0%BB%D0%B0_%D0%BD%D0%B0%D1%88%D0%B8%D1%85_%D1%81%D0%BB%D0%BE%D0%B2_Ted_Ed.mp4?alt=media&token=497ed25d-5207-4054-891b-98af93c19722
+				for (let i = 0; i < countPreviews; i++) {	
+					if (videoElement.value.currentTime < duration) {
+						setTimeout(() => {
+							videoElement.value.currentTime = videoElement.value.currentTime += oneTick
+
+							const item = document.createElement('canvas')
+							item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+
+							document.getElementById('canvases').append(item)
+
+							const context = item.getContext('2d')
+							context.drawImage(videoElement.value, 0, 0, 260, 180)
+						}, i * 3000) // i * 3000
+					}
+				}
+			})
 		})
 
 		const nextTime = (sec, to) => {
@@ -106,17 +98,19 @@ export default {
 				: videoElement.value.currentTime -= sec
 		}
 
-		return { video, canvasElement, videoElement, images, nextTime }
+		return { video, videoElement, nextTime, fbLink }
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.json-code {
-	padding: 5px;
-	border-radius: 4px;
-	background: bisque;
-	white-space: pre-wrap;
+#canvases {
+	display: flex;
+	overflow: auto;
+}
+video {
+	width: 100%;
+	height: 320px;
 }
 .form {
 	&__group {margin-bottom: 1rem;}
@@ -135,7 +129,7 @@ export default {
 		color: #444;
 		border: 1px solid #ccc;
 
-		padding: 0 5px;
+		padding: 0 10px;
 		min-height: 40px;
 		border-radius: 4px;
 

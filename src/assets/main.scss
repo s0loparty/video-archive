@@ -128,7 +128,7 @@ body {
 	margin-top: var(--header-h);
 	margin-left: var(--aside-w);
 	// flex: 1 0 0;
-	width: 100%;
+	width: calc(100% - var(--aside-w));
 }
 
 @media screen and (max-width: $bp-sm) {
