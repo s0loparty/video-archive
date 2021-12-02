@@ -1,7 +1,7 @@
 <template>
 	<router-link :to="`/video/` + id" class="video__item">
-		<div class="video__preview" :style="{ 'background-image': 'url(' + preview + ')' }"></div>
-		<div class="video__title">{{ title }}</div>
+		<div class="video__title">[{{ id }}] {{ title }}</div>
+		<div class="video__preview"></div>
 	</router-link>
 </template>
 
