@@ -1,0 +1,48 @@
+.mobile-nav {
+	height: 30px;
+	width: 30px;
+	margin-left: 15px;
+	position: relative;
+
+	display: none;
+	justify-content: center;
+
+	cursor: pointer;
+	border-radius: var(--rounded);
+
+	@media screen and (max-width: $bp-md) {
+		display: flex;
+		
+		&.is-open {
+			& > span {
+				background-color: var(--color-primary);
+
+				&:nth-child(1) {opacity: 0;}
+				&:nth-child(2) {
+					transform: rotate(45deg);
+					left: 5px;
+				}
+				&:nth-child(3) {
+					transform: rotate(135deg);
+					bottom: 14px;
+					left: 5px;
+				}
+			}
+		}
+	}
+
+	& > span {
+		position: absolute;
+		width: calc(100% - 10px);
+		height: 2px;
+		border-radius: 10px;
+		left: 5px;
+		background: var(--color-light);
+
+		transition: .4s;
+
+		&:nth-child(1) {top: 7px;}
+		&:nth-child(2) {top: 14px;}
+		&:nth-child(3) {bottom: 7px;}
+	}
+}

@@ -3,8 +3,8 @@
 		<div class="card">
 			<h2 style="margin-top: 0;margin-bottom: 20px;">Добавить видео</h2>
 
-			<div style="display: flex;">
-				<section style="flex: 0 0 50%">
+			<div class="grid">
+				<section>
 					<form @submit.prevent="submit" class="form">
 						<div class="form__group">
 							<label for="googleLink" class="form__label">Ссылка на видео с Firebase</label>
@@ -18,23 +18,29 @@
 							<label for="source" class="form__label">Прямая ссылка на видео</label>
 							<input v-model="video.source" type="text" id="source" class="form__input">
 						</div>
-						<div class="form__group">
-							<label for="googleId" class="form__label">Категория</label>
-							<input v-model="video.category" type="text" id="googleId" class="form__input">
+						<div class="form__group form__grid">
+							<div>
+								<label for="googleId" class="form__label">Категория</label>
+								<input :value="categoryName" type="text" id="googleId" class="form__input">
+							</div>
+							<div>
+								<label for="preview" class="form__label">Preview</label>
+								<input v-model="video.preview" type="text" id="preview" class="form__input">
+							</div>
 						</div>
 					</form>
 				</section>
-				<section style="flex: 1 0 0">
-					<video :src="video.source" ref="videoElement" controls autoplay muted></video>
-				</section>
+				<video :src="video.source" ref="videoElement" controls autoplay muted></video>
 			</div>
+
+			<pre>{{ video }}</pre>
 			<section id="canvases"></section>
 		</div>
 	</div>
 </template>
 
 <script>
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref, computed } from '@vue/reactivity'
 import { watch } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 
@@ -47,32 +53,34 @@ export default {
 		const categories = store.getters.getCategories
 		
 		const video = reactive({
+			id: null,
 			title: '',
-			link: '',
 			source: '',
-			category: '',
+			categoryId: null,
+			preview: '',
 		})
+
+		const categoryName = computed(() => categories.find(i => i.id === video.categoryId)?.title ?? 'unknown')
 		
 
 		watch(fbLink, async (newValue, oldVAlue) => {
 			if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
 			
+			// json data info
+			// https://firebase.google.com/docs/reference/js/storage.fullmetadata
 			const res = await fetch(newValue.split('?alt')[0])
 			const data = await res.json()
-			const arr = data.name.split('/')
 			const name = data.name.replaceAll('_', ' ').slice(0, -4)
 			
+			video.id = data.generation
 			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
-			video.category = categories.find(i => name.indexOf(i.title) !== -1).title
-			video.source = newValue.split('&token')[0]
+			video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
+			video.source = newValue
 
 			videoElement.value.addEventListener('loadeddata', function() {
 				const duration = Math.floor(videoElement.value.duration)
 				const countPreviews = 30 // кол-во элементов
 				const oneTick = Math.floor(duration / countPreviews)
-
-				// this.play()
-				// https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%A3%D1%80%D0%BE%D0%BA%D0%B8_%D0%9E%D1%81%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%BC%D0%B0_%D1%81%D0%B8%D0%BB%D0%B0_%D0%BD%D0%B0%D1%88%D0%B8%D1%85_%D1%81%D0%BB%D0%BE%D0%B2_Ted_Ed.mp4?alt=media&token=497ed25d-5207-4054-891b-98af93c19722
 
 				for (let i = 0; i < countPreviews; i++) {	
 					if (videoElement.value.currentTime < duration) {
@@ -85,7 +93,7 @@ export default {
 							document.getElementById('canvases').append(item)
 
 							const context = item.getContext('2d')
-							context.drawImage(videoElement.value, 0, 0, 260, 180)
+							context.drawImage(videoElement.value, 0, 0, 320, 180)
 						}, i * 3000) // i * 3000
 					}
 				}
@@ -98,54 +106,33 @@ export default {
 				: videoElement.value.currentTime -= sec
 		}
 
-		return { video, videoElement, nextTime, fbLink }
+		return { video, videoElement, nextTime, fbLink, categoryName }
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-#canvases {
-	display: flex;
-	overflow: auto;
-}
-video {
-	width: 100%;
-	height: 320px;
-}
-.form {
-	&__group {margin-bottom: 1rem;}
-	&__label {
-		display: block;
-		margin-bottom: 0.5rem;
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		grid-gap: 20px;
 	}
-	&__input {
-		// temp
-		width: 90%;
-
-		display: inline-flex;
-		box-sizing: border-box;
-
-		background-color: var(--color-white);
-		color: #444;
-		border: 1px solid #ccc;
-
-		padding: 0 10px;
-		min-height: 40px;
+	#canvases {
+		display: flex;
+		overflow: auto;
+	}
+	video {
+		width: 100%;
+		height: 320px;
 		border-radius: 4px;
+	}
 
-		transition: all .3s;
-		&:focus {
-			outline: none;
-			border-color: var(--color-secondary);
-		}
-		&:disabled {
-			background-color: var(--body-bg);
-			color: var(--color-secondary);
-		}
-	}
-	&__small {
+	pre {
 		display: block;
-		margin-top: 5px;
+		overflow: auto;
+		margin: 20px 0;
+		background: bisque;
+		padding: 10px;
+		border-radius: 4px;
 	}
-}
 </style>

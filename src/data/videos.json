@@ -1,154 +1,44 @@
 [
 	{
-		"id": 1,
-		"title": "3 закона Ньютона и велосипед",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1EXW92QmSV1gfpQtLayKzpY7YM5lXqRiL=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1EXW92QmSV1gfpQtLayKzpY7YM5lXqRiL",
-		"googleId": "1EXW92QmSV1gfpQtLayKzpY7YM5lXqRiL"
-	},
-	{
-		"id": 2,
-		"title": "Второе Пришествие Уильям Батлер Йейтс",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1aUTXl7TtC-GSpICk5LgMk7q3HXB-2hk_=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1aUTXl7TtC-GSpICk5LgMk7q3HXB-2hk_",
-		"googleId": "1aUTXl7TtC-GSpICk5LgMk7q3HXB-2hk_"
-	},
-	{
-		"id": 3,
-		"title": "Есть ли у животных язык",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/19tYRWz4DEyvkkes4Fu7eQkSJ7jjN7C0T=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=19tYRWz4DEyvkkes4Fu7eQkSJ7jjN7C0T",
-		"googleId": "19tYRWz4DEyvkkes4Fu7eQkSJ7jjN7C0T"
-	},
-	{
-		"id": 4,
-		"title": "Куда бежать во время зомби апокалипсиса",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1IiEv5IAuan-DqcyzfW9U20jTZa5RmWrn=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1IiEv5IAuan-DqcyzfW9U20jTZa5RmWrn",
-		"googleId": "1IiEv5IAuan-DqcyzfW9U20jTZa5RmWrn"
-	},
-	{
-		"id": 5,
-		"title": "Самый богатый человек в истории Манса Муса",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1cVnLJFXo7Vyf3mVAwNqSOfTWW8_AjYTA=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1cVnLJFXo7Vyf3mVAwNqSOfTWW8_AjYTA",
-		"googleId": "1cVnLJFXo7Vyf3mVAwNqSOfTWW8_AjYTA"
-	},
-	{
-		"id": 6,
-		"title": "Сила творческих ограничений",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1BWVujumAQ9s445tNgTGwlMCBaSlx-bSE=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1BWVujumAQ9s445tNgTGwlMCBaSlx-bSE",
-		"googleId": "1BWVujumAQ9s445tNgTGwlMCBaSlx-bSE"
-	},
-	{
-		"id": 7,
-		"title": "Тайны X-хромосомы",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1UyvZyxGd0_T24z1jy_eS-E34LM096rur=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1UyvZyxGd0_T24z1jy_eS-E34LM096rur",
-		"googleId": "1UyvZyxGd0_T24z1jy_eS-E34LM096rur"
-	},
-	{
-		"id": 8,
-		"title": "Уроки Освенцима сила наших слов",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1ARXB6rXO83X0arRLg0qLqHIHd83K_p0F=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1ARXB6rXO83X0arRLg0qLqHIHd83K_p0F",
-		"googleId": "1ARXB6rXO83X0arRLg0qLqHIHd83K_p0F"
-	},
-	{
-		"id": 9,
-		"title": "Этот метод поможет улучшить ваше Критическое Мышление",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1Qi7HuArlnGr0LRCE2Q7ZUX7M4uK2zL7Q=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1Qi7HuArlnGr0LRCE2Q7ZUX7M4uK2zL7Q",
-		"googleId": "1Qi7HuArlnGr0LRCE2Q7ZUX7M4uK2zL7Q"
-	},
-	{
-		"id": 10,
-		"title": "Как быть уверенным",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1wHv7E-LTEgRORs9L_vRNJMePa0lVAUJi=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1wHv7E-LTEgRORs9L_vRNJMePa0lVAUJi",
-		"googleId": "1wHv7E-LTEgRORs9L_vRNJMePa0lVAUJi"
-	},
-	{
-		"id": 11,
-		"title": "Как не беспокоиться о том, что думают другие",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1pPumj1X8g1475v-IBup6TONG9GIHx4Ay=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1pPumj1X8g1475v-IBup6TONG9GIHx4Ay",
-		"googleId": "1pPumj1X8g1475v-IBup6TONG9GIHx4Ay"
-	},
-	{
-		"id": 12,
-		"title": "Психотерапия",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1DekdtUahh20R0oYa95RCiRUu_qgA_t_7=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1DekdtUahh20R0oYa95RCiRUu_qgA_t_7",
-		"googleId": "1DekdtUahh20R0oYa95RCiRUu_qgA_t_7"
-	},
-	{
-		"id": 13,
-		"title": "Страх счастья",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1GdcalbUohq9PR4HQSazDL7avx3E5p9V8=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1GdcalbUohq9PR4HQSazDL7avx3E5p9V8",
-		"googleId": "1GdcalbUohq9PR4HQSazDL7avx3E5p9V8"
-	},
-	{
-		"id": 14,
-		"title": "У дружбы есть цель",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/15HH15yBPnkhrkIQEd7WugYFIvK3tzPwq=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=15HH15yBPnkhrkIQEd7WugYFIvK3tzPwq",
-		"googleId": "15HH15yBPnkhrkIQEd7WugYFIvK3tzPwq"
-	},
-	{
-		"id": 15,
-		"title": "Как найти идеальную работу",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1yTxifkvk1THNOI6s8KShkVSDHdfuFZmg=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1yTxifkvk1THNOI6s8KShkVSDHdfuFZmg",
-		"googleId": "1yTxifkvk1THNOI6s8KShkVSDHdfuFZmg"
-	},
-	{
-		"id": 16,
-		"title": "Философия Альбер Камю",
-		"categoryId": 2,
-		"preview": "https://lh3.google.com/u/0/d/1C7V6sfNd4awh93zelDiGIE9FklrScl1M=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1C7V6sfNd4awh93zelDiGIE9FklrScl1M",
-		"googleId": "1C7V6sfNd4awh93zelDiGIE9FklrScl1M"
-	},
-	{
-		"id": 17,
-		"title": "История кошек в истории человечества",
-		"categoryId": 1,
-		"preview": "https://lh3.google.com/u/0/d/1VWBE11ka33jaHeHzaoQCBtkUEXpwmWrd=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1VWBE11ka33jaHeHzaoQCBtkUEXpwmWrd",
-		"googleId": "1VWBE11ka33jaHeHzaoQCBtkUEXpwmWrd"
-	},
-	{
-		"id": 18,
-		"title": "Как мы понимаем речь [Life Noggin]",
-		"categoryId": 0,
-		"preview": "https://lh3.google.com/u/0/d/1NOvdXmN3Fqnl_gdFliaJKUEqd49HzwyS=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1NOvdXmN3Fqnl_gdFliaJKUEqd49HzwyS",
-		"googleId": "1NOvdXmN3Fqnl_gdFliaJKUEqd49HzwyS"
-	},
-	{
-		"id": 19,
+		"id": "1638618908409820",
 		"title": "Кто такой настоящий друг",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FJW%2F%D0%9A%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B9%20%D0%BD%D0%B0%D1%81%D1%82%D0%BE%D1%8F%D1%89%D0%B8%D0%B9%20%D0%B4%D1%80%D1%83%D0%B3%20JW.mp4?alt=media&token=193aef7a-d4a4-44c0-904d-1b8e7ac1f73d",
 		"categoryId": 3,
-		"preview": "https://lh3.google.com/u/0/d/1CmdpIljV9NcVfhJB2GDVyd5wfavGpBTY=w320-h200-p-k-nu-iv1",
-		"source": "https://drive.google.com/u/0/uc?id=1CmdpIljV9NcVfhJB2GDVyd5wfavGpBTY",
-		"googleId": "1CmdpIljV9NcVfhJB2GDVyd5wfavGpBTY"
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FJW%2F%D0%9A%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B9%20%D0%BD%D0%B0%D1%81%D1%82%D0%BE%D1%8F%D1%89%D0%B8%D0%B9%20%D0%B4%D1%80%D1%83%D0%B3.png?alt=media&token=5c5f217c-3e34-4119-a13f-95c335e74e20"
+	},
+	{
+		"id": "1637866724255220",
+		"title": "Уроки Освенцима сила наших слов",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%A3%D1%80%D0%BE%D0%BA%D0%B8_%D0%9E%D1%81%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%BC%D0%B0_%D1%81%D0%B8%D0%BB%D0%B0_%D0%BD%D0%B0%D1%88%D0%B8%D1%85_%D1%81%D0%BB%D0%BE%D0%B2_Ted_Ed.mp4?alt=media&token=497ed25d-5207-4054-891b-98af93c19722",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%9E%D1%81%D0%B2%D0%B5%D0%BD%D1%86%D0%B8%D0%BC%D0%B0%20%D1%81%D0%B8%D0%BB%D0%B0%20%D0%BD%D0%B0%D1%88%D0%B8%D1%85%20%D1%81%D0%BB%D0%BE%D0%B2%20Ted%20Ed.png?alt=media&token=ef9b7afa-5edb-4cee-b5ed-4290575df10b"
+	},
+	{
+		"id": "1637946628488511",
+		"title": "Почему я злюсь, а не грущу",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FSchool%20of%20Life%2F%D0%9F%D0%BE%D1%87%D0%B5%D0%BC%D1%83_%D1%8F_%D0%B7%D0%BB%D1%8E%D1%81%D1%8C%2C_%D0%B0_%D0%BD%D0%B5_%D0%B3%D1%80%D1%83%D1%89%D1%83_The_School_of_Life.mp4?alt=media&token=496b6346-060c-4eaf-a5ec-d98866fe4e87",
+		"categoryId": 2,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FSchool%20of%20Life%2F%D0%9F%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20%D1%8F%20%D0%B7%D0%BB%D1%8E%D1%81%D1%8C%2C%20%D0%B0%20%D0%BD%D0%B5%20%D0%B3%D1%80%D1%83%D1%89%D1%83.png?alt=media&token=698bcc9d-dec2-4cd7-854a-bcc29a471626"
+	},
+	{
+		"id": "1638636241683400",
+		"title": "Как побороть застенчивость",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FSchool%20of%20Life%2F%D0%9A%D0%B0%D0%BA_%D0%BF%D0%BE%D0%B1%D0%BE%D1%80%D0%BE%D1%82%D1%8C_%D0%B7%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D1%87%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%8C_The_School_of_Life.mp4?alt=media&token=7a03e210-3709-47c9-bbe3-f2d4bea69d38",
+		"categoryId": 2,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FSchool%20of%20Life%2F%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B1%D0%BE%D1%80%D0%BE%D1%82%D1%8C%20%D0%B7%D0%B0%D1%81%D1%82%D0%B5%D0%BD%D1%87%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%8C.png?alt=media&token=abc6ccbc-5ab1-49fb-925d-aa406b8c4d84"
+	},
+	{
+		"id": "1638642356283310",
+		"title": "Как быть уверенным",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FSchool%20of%20Life%2F%D0%9A%D0%B0%D0%BA%20%D0%B1%D1%8B%D1%82%D1%8C%20%D1%83%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%BC_%20%5BThe%20School%20of%20Life%5D.mp4?alt=media&token=758177e2-303a-4d31-b8d6-6c03b0818a0b",
+		"categoryId": 2,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FSchool%20of%20Life%2F%D0%9A%D0%B0%D0%BA%20%D0%B1%D1%8B%D1%82%D1%8C%20%D1%83%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%BC%20%20%5BThe%20School%20of%20Life%5D.png?alt=media&token=3345b4ab-8651-47db-a462-37fec07c6bcf"
+	},
+	{
+		"id": "1638651204624011",
+		"title": "Как перехитрить дилемму заключенного",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA_%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%B8%D1%82%D1%80%D0%B8%D1%82%D1%8C_%D0%B4%D0%B8%D0%BB%D0%B5%D0%BC%D0%BC%D1%83_%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE_TED_Ed.mp4?alt=media&token=19dfa142-421c-4661-b70a-5ae241f92662",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%B8%D1%82%D1%80%D0%B8%D1%82%D1%8C%20%D0%B4%D0%B8%D0%BB%D0%B5%D0%BC%D0%BC%D1%83%20%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20TED%20Ed.png?alt=media&token=45d34655-ea02-4372-8996-f69a522869e6"
 	}
 ]

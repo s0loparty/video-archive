@@ -1,7 +1,7 @@
 .video-page {
 	display: grid;
 	grid-template-columns: auto 260px;
-	grid-column-gap: 20px;
+	grid-column-gap: calc(var(--space) / 2);
 
 	&__content {
 		// width: 70%;
@@ -38,14 +38,14 @@
 		height: 100%;
 	}
 	&__info {
-		margin: 20px 0;
+		margin: calc(var(--space) / 2) 0;
 	}
 	&__title {
 		font-size: 18px;
 		font-weight: bold;
 	}
 	&__share {
-		margin: 20px 0;
+		margin: calc(var(--space) / 2) 0;
 	}
 	&__history {
 		// width: 25%;
@@ -54,7 +54,7 @@
 		overflow: auto;
 
 		& > a {
-			margin-bottom: 20px;
+			margin-bottom: calc(var(--space) / 2);
 			&:last-child {margin-bottom: 0;}
 		}
 	}

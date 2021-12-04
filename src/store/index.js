@@ -11,7 +11,8 @@ export default createStore({
 			{id: 2, title: 'School of Life'},
 			{id: 3, title: 'JW'},
 		],
-		currentCategory: 0
+		currentCategory: 0,
+		mobileMenu: false,
 	},
 	getters: {
 		getCategories(state) {
@@ -22,11 +23,17 @@ export default createStore({
 		},
 		getCurrentCategory(state) {
 			return state.currentCategory
+		},
+		mobileMenu(state) {
+			return state.mobileMenu
 		}
 	},
 	mutations: {
 		changeCurrentCategory(state, id) {
 			state.currentCategory = id
+		},
+		toggleMobileMenu(state) {
+			state.mobileMenu = !state.mobileMenu
 		}
 	},
 	actions: {},

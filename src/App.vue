@@ -1,15 +1,13 @@
 <template>
-	<NewPage></NewPage>
+	<the-header></the-header>
+	<router-view></router-view>
 </template>
 
 <script>
-// import TheHeader from "./components/TheHeader.vue"
-// import TheAside from "./components/TheAside.vue"
-// import TheMain from "./components/TheMain.vue"
-
-import NewPage from "./views/NewPage.vue"
+import TheHeader from "@/components/TheHeader.vue"
+// import MainPage from "./views/MainPage.vue"
 
 export default {
-	components: { /*TheHeader, TheAside, TheMain, */NewPage }
+	components: { TheHeader /*, MainPage*/ }
 }
 </script>
