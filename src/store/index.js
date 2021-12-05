@@ -19,7 +19,7 @@ export default createStore({
 			return state.categories
 		},
 		getVideos(state) {
-			return state.videos
+			return [...state.videos].reverse()
 		},
 		getCurrentCategory(state) {
 			return state.currentCategory

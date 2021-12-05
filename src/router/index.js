@@ -38,24 +38,34 @@ const routes = [
 		meta: {
 			title: 'Добавить видео'
 		}
+	},
+	{ 
+		path: '/:pathMatch(.*)*', 
+		name: 'NotFound', 
+		component: () => import('../views/404.vue')
 	}
 ]
 
 const router = createRouter({
-	// base: './dist/',
-	// history: createWebHistory(process.env.BASE_URL),
 	history: createWebHashHistory(process.env.BASE_URL),
 	routes
 })
 
-router.afterEach(to => {
+router.beforeEach((to, from, next) => {
 	if (to.meta.title) {
 		document.title = to.meta.title
 	}
 
 	if (to.name === 'video-page') {
-		document.title = store.getters.getVideos.find(i => i.googleId === to.params.id)?.title ?? 'Смотреть видео'
+		const videos = store.getters.getVideos
+
+		if (!videos.some(v => v.id === to.params.id)) return next('/404')
+		
+		document.title = store.getters.getVideos.find(i => i.id === to.params.id).title
 	}
+
+	next()
 })
+
 
 export default router

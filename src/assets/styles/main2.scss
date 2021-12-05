@@ -28,8 +28,9 @@ $bp-sm: 576px;
 
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
-	padding-top: calc(var(--header-h) + var(--space));
+	padding-top: calc(var(--header-h) + (var(--space) / 2));
 	color: var(--color-secondary);
+	&.overflow-y {overflow-y: hidden;}
 }
 a, button {
 	transition: .2s ease,color .2s ease,border .2s ease;

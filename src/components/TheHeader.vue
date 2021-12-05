@@ -1,6 +1,6 @@
 <template>
 	<header class="header">
-		<div class="header__nav">
+		<div :class="['header__nav', { 'is-open': isOpen }]">
 			<ul class="header__nav-list">
 				<li class="header__nav-item">
 					<router-link to="/" class="header__nav-link">Все ролики</router-link>
