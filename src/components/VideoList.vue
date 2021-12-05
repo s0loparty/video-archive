@@ -38,7 +38,7 @@ export default {
 			: videos
 		)
 
-		return { filtredVideos }
+		return { filtredVideos: filtredVideos.value.reverse() }
 	},
 	components: { VideoItem }
 }

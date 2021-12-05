@@ -19,6 +19,7 @@
 						:key="res.id"
 						:to="'/video/' + res.id"
 						class="header__search-item"
+						@click="searchResults = [], inputQuery = ''"
 					>
 					{{ res.title }}
 					</router-link>

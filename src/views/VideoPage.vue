@@ -29,7 +29,7 @@
 
 <script>
 import { computed, onMounted, ref, watch } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { useStore } from 'vuex'
 
 // import VideoItem from "../components/VideoItem.vue"
@@ -38,12 +38,14 @@ export default {
 	setup() {
 		const store = useStore()
 		const route = useRoute()
+		const router = useRouter()
 		const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
 		// const loading = ref(true)
 
-		// if (!video) {
-		// 	return console.log('============== Video not found ==============');
-		// }
+		if (!video.value) {
+			// return console.log('============== Video not found ==============');
+			router.push('/')
+		}
 
 		// onMounted(async () => {
 		// 	try {
@@ -57,6 +59,7 @@ export default {
 		// })
 
 		document.title = video.value.title
+		watch(video, (n, o) => n?.title ? document.title = n.title : route.meta.title)
 
 		return { video}
 	},

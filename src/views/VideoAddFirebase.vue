@@ -30,7 +30,10 @@
 						</div>
 					</form>
 				</section>
-				<video :src="video.source" ref="videoElement" controls autoplay muted></video>
+				<div class="video-info">
+					<img :src="video.preview.length ? video.preview : 'https://via.placeholder.com/380x210?text=No+video+preview'"/>
+					<video :src="video.source" ref="videoElement" controls autoplay muted></video>
+				</div>
 			</div>
 
 			<pre>{{ video }}</pre>
@@ -51,6 +54,8 @@ export default {
 		const videoElement = ref(null)
 		const fbLink = ref('')
 		const categories = store.getters.getCategories
+		// const allVideos = store.getters.getVideos
+		// const stop = ref(false)
 		
 		const video = reactive({
 			id: null,
@@ -65,6 +70,10 @@ export default {
 
 		watch(fbLink, async (newValue, oldVAlue) => {
 			if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
+
+			if (newValue != video.source) {
+				document.getElementById('canvases').innerHTML = ''
+			}
 			
 			// json data info
 			// https://firebase.google.com/docs/reference/js/storage.fullmetadata
@@ -76,6 +85,24 @@ export default {
 			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
 			video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
 			video.source = newValue
+
+			// проверка на существование похожего видео
+			// allVideos.forEach((item, idx) => {
+			// 	const titleArray = item.title.split(' ')
+			// 	const newTitleArray = video.title.split(' ')
+
+			// 	if (
+			// 		titleArray[0] == newTitleArray[0] &&
+			// 		titleArray[1] == newTitleArray[2] && 
+			// 		titleArray[2] == newTitleArray[2]
+			// 	) {
+			// 		stop.value = true
+			// 		console.log('Похожее видео: ', item)
+			// 		alert('Найдено похожее видео!')
+			// 	}
+			// })
+
+			// if (stop.value) return
 
 			videoElement.value.addEventListener('loadeddata', function() {
 				const duration = Math.floor(videoElement.value.duration)
@@ -112,21 +139,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.card {
+		margin-bottom: 20px;
+		border-radius: 4px;
+	}
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 		grid-gap: 20px;
 	}
+	.video-info {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		align-items: center;
+
+		& > * {
+			display: block;
+			width: 100%;
+			border-radius: 4px;
+		}
+	}
 	#canvases {
 		display: flex;
 		overflow: auto;
 	}
-	video {
-		width: 100%;
-		height: 320px;
-		border-radius: 4px;
-	}
-
 	pre {
 		display: block;
 		overflow: auto;
