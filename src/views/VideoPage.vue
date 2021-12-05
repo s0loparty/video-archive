@@ -8,9 +8,10 @@
 					</div>
 					<div class="vpage__info">
 						<h2 class="vpage__title">{{ video.title }}</h2>
-					</div>
-					<div class="vpage__share">
-						<BaseShareLink :share-link="shareLink" />
+
+						<div class="vpage__share">
+							<BaseShareLink :share-link="shareLink" />
+						</div>
 					</div>
 				</div>
 				<div class="vpage__history">

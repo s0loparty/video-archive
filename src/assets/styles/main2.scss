@@ -20,6 +20,10 @@ $bp-xl: 1200px;
 $bp-lg: 992px;
 $bp-md: 768px;
 $bp-sm: 576px;
+$bp-smx: 480px;
+
+// mixins
+@import '@/assets/styles/_mixins';
 
 .multiselect {width: inherit;}
 .multiselect.is-active {box-shadow: none;}
@@ -62,6 +66,10 @@ a, button {
 		min-width: 200px;
 		max-width: 300px;
 		width: 100%;
+
+		@media screen and (max-width: $bp-smx) {
+			max-width: 100%;
+		}
 	}
 }
 

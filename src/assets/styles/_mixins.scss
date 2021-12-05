@@ -1,0 +1,16 @@
+@mixin mobile-wrap($top: 0, $rounded: 0) {
+	@media screen and (max-width: $bp-smx) {
+		position: relative;
+		width: calc(100% + var(--space));
+		
+		@if $top != 0 {
+			top: -20px;
+		}
+
+		@if $rounded != 0 {
+			border-radius: 0;
+		}
+
+		left: -20px;
+	}
+}

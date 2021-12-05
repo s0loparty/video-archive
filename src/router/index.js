@@ -1,9 +1,4 @@
-import {
-	createRouter,
-	// createWebHistory
-	createWebHashHistory
-} from 'vue-router'
-
+import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store'
 
 const routes = [
@@ -54,6 +49,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 	if (to.meta.title) {
 		document.title = to.meta.title
+	}
+
+	if (store.getters.mobileMenu) {
+		store.commit('toggleMobileMenu')
 	}
 
 	if (to.name === 'video-page') {
