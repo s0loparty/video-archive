@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			
-			<VideoList :current-category="currentCategory"></VideoList>
+			<VideoList :videos="videos" :current-category="currentCategory"></VideoList>
 		</div>
 	</main>
 </template>
@@ -35,11 +35,12 @@ export default {
 	setup() {
 		const store = useStore()
 		const categories = store.getters.getCategories
+		const videos = store.getters.getVideos
 
 		const currentCategory = ref(0)
 		const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)
 
-		return { categories, currentCategory, categoryName }
+		return { categories, currentCategory, categoryName, videos }
 	},
 	components: { Multiselect, VideoList }
 }

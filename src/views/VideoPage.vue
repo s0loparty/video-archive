@@ -15,8 +15,9 @@
 					</div>
 				</div>
 				<div class="vpage__history">
-					<p>итория просмотров</p>
-					<hr>
+					<h3 class="vpage__history-title">Итория просмотров</h3>
+					<p v-if="!historyVideos.length">История пуста</p>
+					<VideoList v-else :videos="historyVideos"></VideoList>
 				</div>
 			</div>
 		</div>
@@ -28,19 +29,23 @@ import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useStore } from 'vuex'
 
-// import VideoItem from "../components/VideoItem.vue"
 import BaseShareLink from '@/components/BaseShareLink'
+import VideoList from "../components/VideoList.vue"
 
 export default {
 	setup() {
 		const store = useStore()
 		const route = useRoute()
 		const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
-		// const shareLink = computed(() => window.location.href)
-		const shareLink = computed(() => location.origin + route.path) 
+		const shareLink = computed(() => location.origin + route.path)
 
-		return { video, shareLink }
+		const allVideos = store.getters.getVideos
+		const history = store.getters['history/getHistory']
+
+		const historyVideos = history.map(item => allVideos.find(v => v.id == item))
+
+		return { video, shareLink, historyVideos }
 	},
-	components: { BaseShareLink /*VideoItem*/ }
+	components: { BaseShareLink, VideoList }
 }
 </script>

@@ -1,8 +1,8 @@
-import {
-	createStore
-} from 'vuex'
+import { createStore } from 'vuex'
 
 import dataVideos from '@/data/videos.json'
+import history from './modules/history'
+
 export default createStore({
 	state: {
 		videos: dataVideos,
@@ -37,5 +37,7 @@ export default createStore({
 		}
 	},
 	actions: {},
-	modules: {}
+	modules: {
+		history
+	}
 })

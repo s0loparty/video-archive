@@ -34,6 +34,8 @@ body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	padding-top: calc(var(--header-h) + (var(--space) / 2));
 	color: var(--color-secondary);
+	min-height: 100vh;
+
 	&.overflow-y {overflow-y: hidden;}
 }
 a, button {
@@ -82,3 +84,27 @@ a, button {
 
 // elemets
 @import '@/assets/styles/_form';
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+	scrollbar-width: auto;
+	scrollbar-color: #455dbf var(--color-white);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--color-secondary);
+	border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--color-primary);
+	border-radius: 8px;
+	border: 0;
+}

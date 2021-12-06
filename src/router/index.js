@@ -61,6 +61,9 @@ router.beforeEach((to, from, next) => {
 		if (!videos.some(v => v.id === to.params.id)) return next('/404')
 		
 		document.title = store.getters.getVideos.find(i => i.id === to.params.id).title
+
+		store.commit('history/addIdInHistory', to.params.id)
+		store.commit('history/updateStorage')
 	}
 
 	next()

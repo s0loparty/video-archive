@@ -3,7 +3,7 @@
 		<div v-if="!filtredVideos.length">
 			<p class="mess-no-videos">¯\_(ツ)_/¯ <br>Нет роликов</p>
 		</div>
-		<div v-else class="video__list">
+		<div v-else :class="['video__list', { 'video__list--max-w': filtredVideos.length <= 5 }]">
 			<video-item 
 				v-for="video in filtredVideos" 
 				:key="video.id" 
@@ -23,6 +23,11 @@ import VideoItem from '../components/VideoItem.vue'
 
 export default {
 	props: {
+		videos: {
+			type: Array,
+			required: true,
+			default: [],
+		},
 		currentCategory: {
 			type: Number,
 			required: false,
@@ -31,11 +36,16 @@ export default {
 	},
 	setup(props) {
 		const store = useStore()
-		const videos = store.getters.getVideos
+		// const videos = store.getters.getVideos
+
+		// const filtredVideos = computed(() => props.currentCategory 
+		// 	? videos.filter(i => i.categoryId === props.currentCategory) 
+		// 	: videos
+		// )
 
 		const filtredVideos = computed(() => props.currentCategory 
-			? videos.filter(i => i.categoryId === props.currentCategory) 
-			: videos
+			? props.videos.filter(i => i.categoryId === props.currentCategory) 
+			: props.videos
 		)
 
 		return { filtredVideos }

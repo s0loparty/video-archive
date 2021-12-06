@@ -5,9 +5,8 @@
 
 <script>
 import TheHeader from "@/components/TheHeader.vue"
-// import MainPage from "./views/MainPage.vue"
 
 export default {
-	components: { TheHeader /*, MainPage*/ }
+	components: { TheHeader }
 }
 </script>

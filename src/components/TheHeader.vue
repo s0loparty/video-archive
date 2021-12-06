@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="header__search">
-			<input @input="enterQuery" @keydown.esc="searchResults = []" class="header__search-input" type="text" placeholder="Поиск">
+			<input @input="enterQuery" :value="inputQuery" @keydown.esc="searchResults = []" class="header__search-input" type="text" placeholder="Поиск">
 			<div v-show="searchResults.length" class="header__search-results">
 				<transition-group name="list" @before-enter="beforeEnter" @enter="enter" @leave="leave" :css="false">
 					<router-link 
@@ -64,6 +64,12 @@ export default {
 		})
 
 		const enterQuery = e => inputQuery.value = e.target.value
+
+		document.body.addEventListener('click', e => {
+			if (!e.target.classList.contains('header__search-results')) {
+				searchResults.value = []
+			}
+		})
 
 
 		// это конечно классно

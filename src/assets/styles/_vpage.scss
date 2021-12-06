@@ -1,7 +1,7 @@
 .vpage {
 	&__wrap {
 		display: grid;
-		grid-template-columns: minmax(674px, 1fr) minmax(250px, 300px);
+		grid-template-columns: minmax(674px, 1fr) minmax(250px, 320px);
 		grid-gap: 20px;
 
 		@media screen and (max-width: $bp-lg) {
@@ -53,6 +53,17 @@
 		margin-top: calc(var(--space) / 2);
 	}
 	&__history {
-		background-color: antiquewhite;
+		background-color: var(--color-light);
+		padding: calc(var(--space) / 4);
+		border-radius: var(--rounded);
+		overflow: auto;
+
+		@media screen and (min-width: $bp-md) {
+			max-height: 70vh;
+		}
+	}
+	&__history-title {
+		font-weight: bold;
+		margin-bottom: 10px;
 	}
 }
