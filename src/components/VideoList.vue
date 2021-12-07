@@ -15,14 +15,11 @@
 	</div>
 </template>
 
-<script>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+<script setup>
+	import { computed } from 'vue'
+	import VideoItem from '../components/VideoItem.vue'
 
-import VideoItem from '../components/VideoItem.vue'
-
-export default {
-	props: {
+	const props = defineProps({
 		videos: {
 			type: Array,
 			required: true,
@@ -33,25 +30,12 @@ export default {
 			required: false,
 			default: 0
 		}
-	},
-	setup(props) {
-		const store = useStore()
-		// const videos = store.getters.getVideos
+	})
 
-		// const filtredVideos = computed(() => props.currentCategory 
-		// 	? videos.filter(i => i.categoryId === props.currentCategory) 
-		// 	: videos
-		// )
-
-		const filtredVideos = computed(() => props.currentCategory 
-			? props.videos.filter(i => i.categoryId === props.currentCategory) 
-			: props.videos
-		)
-
-		return { filtredVideos }
-	},
-	components: { VideoItem }
-}
+	const filtredVideos = computed(() => props.currentCategory 
+		? props.videos.filter(i => i.categoryId === props.currentCategory) 
+		: props.videos
+	)
 </script>
 
 <style lang="scss" scoped>

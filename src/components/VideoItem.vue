@@ -5,9 +5,8 @@
 	</router-link>
 </template>
 
-<script>
-export default {
-	props: {
+<script setup>
+	defineProps({
 		id: {
 			type: String,
 			required: true
@@ -21,6 +20,5 @@ export default {
 			type: String,
 			required: true
 		}
-	}
-}
+	})
 </script>

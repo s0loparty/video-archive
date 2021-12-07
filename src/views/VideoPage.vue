@@ -24,28 +24,21 @@
 	</div>
 </template>
 
-<script>
-import { computed } from "vue"
-import { useRoute } from "vue-router"
-import { useStore } from 'vuex'
+<script setup>
+	import { computed } from "vue"
+	import { useRoute } from "vue-router"
+	import { useStore } from 'vuex'
 
-import BaseShareLink from '@/components/BaseShareLink'
-import VideoList from "../components/VideoList.vue"
+	import BaseShareLink from '@/components/BaseShareLink'
+	import VideoList from "../components/VideoList.vue"
 
-export default {
-	setup() {
-		const store = useStore()
-		const route = useRoute()
-		const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
-		const shareLink = computed(() => location.origin + route.path)
+	const store = useStore()
+	const route = useRoute()
+	const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
+	const shareLink = computed(() => location.origin + route.path)
 
-		const allVideos = store.getters.getVideos
-		const history = store.getters['history/getHistory']
+	const allVideos = store.getters.getVideos
+	const history = store.getters['history/getHistory']
 
-		const historyVideos = history.map(item => allVideos.find(v => v.id == item))
-
-		return { video, shareLink, historyVideos }
-	},
-	components: { BaseShareLink, VideoList }
-}
+	const historyVideos = history.map(item => allVideos.find(v => v.id == item))
 </script>

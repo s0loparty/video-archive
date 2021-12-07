@@ -42,100 +42,68 @@
 	</div>
 </template>
 
-<script>
-import { reactive, ref, computed } from '@vue/reactivity'
-import { watch } from '@vue/runtime-core'
-import { useStore } from 'vuex'
+<script setup>
+	import { reactive, ref, computed } from '@vue/reactivity'
+	import { watch } from '@vue/runtime-core'
+	import { useStore } from 'vuex'
 
-export default {
-	setup() {
-		const store = useStore()
+	const store = useStore()
 
-		const videoElement = ref(null)
-		const fbLink = ref('')
-		const categories = store.getters.getCategories
-		// const allVideos = store.getters.getVideos
-		// const stop = ref(false)
-		
-		const video = reactive({
-			id: null,
-			title: '',
-			source: '',
-			categoryId: null,
-			preview: '',
-		})
+	const videoElement = ref(null)
+	const fbLink = ref('')
+	const categories = store.getters.getCategories
 
-		const categoryName = computed(() => categories.find(i => i.id === video.categoryId)?.title ?? 'unknown')
-		
+	const video = reactive({
+		id: null,
+		title: '',
+		source: '',
+		categoryId: null,
+		preview: '',
+	})
 
-		watch(fbLink, async (newValue, oldVAlue) => {
-			if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
+	const categoryName = computed(() => categories.find(i => i.id === video.categoryId)?.title ?? 'unknown')
+	
 
-			if (newValue != video.source) {
-				document.getElementById('canvases').innerHTML = ''
-			}
-			
-			// json data info
-			// https://firebase.google.com/docs/reference/js/storage.fullmetadata
-			const res = await fetch(newValue.split('?alt')[0])
-			const data = await res.json()
-			const name = data.name.replaceAll('_', ' ').slice(0, -4)
-			
-			video.id = data.generation
-			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
-			video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
-			video.source = newValue
+	watch(fbLink, async (newValue, oldVAlue) => {
+		if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
 
-			// проверка на существование похожего видео
-			// allVideos.forEach((item, idx) => {
-			// 	const titleArray = item.title.split(' ')
-			// 	const newTitleArray = video.title.split(' ')
-
-			// 	if (
-			// 		titleArray[0] == newTitleArray[0] &&
-			// 		titleArray[1] == newTitleArray[2] && 
-			// 		titleArray[2] == newTitleArray[2]
-			// 	) {
-			// 		stop.value = true
-			// 		console.log('Похожее видео: ', item)
-			// 		alert('Найдено похожее видео!')
-			// 	}
-			// })
-
-			// if (stop.value) return
-
-			videoElement.value.addEventListener('loadeddata', function() {
-				const duration = Math.floor(videoElement.value.duration)
-				const countPreviews = 30 // кол-во элементов
-				const oneTick = Math.floor(duration / countPreviews)
-
-				for (let i = 0; i < countPreviews; i++) {	
-					if (videoElement.value.currentTime < duration) {
-						setTimeout(() => {
-							videoElement.value.currentTime = videoElement.value.currentTime += oneTick
-
-							const item = document.createElement('canvas')
-							item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
-
-							document.getElementById('canvases').append(item)
-
-							const context = item.getContext('2d')
-							context.drawImage(videoElement.value, 0, 0, 320, 180)
-						}, i * 3000) // i * 3000
-					}
-				}
-			})
-		})
-
-		const nextTime = (sec, to) => {
-			videoElement.value.currentTime = (to == 'next') 
-				? videoElement.value.currentTime += sec 
-				: videoElement.value.currentTime -= sec
+		if (newValue != video.source) {
+			document.getElementById('canvases').innerHTML = ''
 		}
+		
+		// json data info
+		// https://firebase.google.com/docs/reference/js/storage.fullmetadata
+		const res = await fetch(newValue.split('?alt')[0])
+		const data = await res.json()
+		const name = data.name.replaceAll('_', ' ').slice(0, -4)
+		
+		video.id = data.generation
+		video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
+		video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
+		video.source = newValue
 
-		return { video, videoElement, nextTime, fbLink, categoryName }
-	},
-}
+		videoElement.value.addEventListener('loadeddata', function() {
+			const duration = Math.floor(videoElement.value.duration)
+			const countPreviews = 30 // кол-во элементов
+			const oneTick = Math.floor(duration / countPreviews)
+
+			for (let i = 0; i < countPreviews; i++) {	
+				if (videoElement.value.currentTime < duration) {
+					setTimeout(() => {
+						videoElement.value.currentTime = videoElement.value.currentTime += oneTick
+
+						const item = document.createElement('canvas')
+						item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+
+						document.getElementById('canvases').append(item)
+
+						const context = item.getContext('2d')
+						context.drawImage(videoElement.value, 0, 0, 320, 180)
+					}, i * 3000) // i * 3000
+				}
+			}
+		})
+	})
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
 	<header class="header">
-		<div :class="['header__nav', { 'is-open': isOpen }]">
+		<div :class="['header__nav', { 'is-open': mobileMenu.isOpen }]">
 			<ul class="header__nav-list">
 				<li class="header__nav-item">
 					<router-link to="/" class="header__nav-link">Все ролики</router-link>
@@ -26,7 +26,7 @@
 				</transition-group>
 			</div>
 		</div>
-		<div @click="toggleMenu" :class="['mobile-nav', {'is-open': isOpen}]">
+		<div @click="toggleMenu" :class="['mobile-nav', {'is-open': mobileMenu.isOpen}]">
 			<span></span>
 			<span></span>
 			<span></span>
@@ -34,73 +34,62 @@
 	</header>
 </template>
 
-<script>
-import { ref } from '@vue/reactivity'
-import { watch } from '@vue/runtime-core'
-import { useStore } from 'vuex'
-import { useMobileMenu } from '@/composition/mobile-menu.js'
+<script setup>
+	import { ref } from '@vue/reactivity'
+	import { watch } from '@vue/runtime-core'
+	import { useStore } from 'vuex'
+	import { useMobileMenu } from '@/composition/mobile-menu.js'
 
-export default {
-	setup() {
-		const store = useStore()
-		const videos = store.getters.getVideos
-		const mobileMenu = useMobileMenu()
+	const store = useStore()
+	const videos = store.getters.getVideos
+	const mobileMenu = useMobileMenu()
 
-		const SEARCH_MIN_LENGTH = 1
+	const SEARCH_MIN_LENGTH = 1
 
-		const inputQuery = ref('')
-		const searchResults = ref([])
+	const inputQuery = ref('')
+	const searchResults = ref([])
 
-		watch(inputQuery, (newValue, _) => {
-			if (newValue.length >= SEARCH_MIN_LENGTH) {
-				searchResults.value = videos
-					.filter(video => video.title
-						.toLowerCase()
-						.indexOf(inputQuery.value.toLowerCase()) !== -1)
-			}
-			else {
-				searchResults.value = []
-			}
-		})
-
-		const enterQuery = e => inputQuery.value = e.target.value
-
-		document.body.addEventListener('click', e => {
-			if (!e.target.classList.contains('header__search-results')) {
-				searchResults.value = []
-			}
-		})
-
-
-		// это конечно классно
-		// но в index.html пришлось подключить доп. либу (gsap)
-		const beforeEnter = (el) => {
-			el.style.opacity = 0
-			el.style.height = 0
+	watch(inputQuery, (newValue, _) => {
+		if (newValue.length >= SEARCH_MIN_LENGTH) {
+			searchResults.value = videos
+				.filter(video => video.title
+					.toLowerCase()
+					.indexOf(inputQuery.value.toLowerCase()) !== -1)
 		}
-		const enter = (el, done) => {
-			gsap.to(el, { 
-				opacity: 1, 
-				height: '34px', // 30px
-				delay: el.dataset.index * .15,
-				onComplete: done
-			})
+		else {
+			searchResults.value = []
 		}
-		const leave = (el, done) => {
-			gsap.to(el, { 
-				opacity: 0, 
-				height: 0,
-				delay: el.dataset.index * .15,
-				onComplete: done
-			})
-		}
+	})
 
-		return { 
-			inputQuery, searchResults, enterQuery,
-			beforeEnter, enter, leave, 
-			toggleMenu: () => mobileMenu.toggleMenu(),
-			isOpen: mobileMenu.isOpen
+	const enterQuery = e => inputQuery.value = e.target.value
+
+	document.body.addEventListener('click', e => {
+		if (!e.target.classList.contains('header__search-results')) {
+			searchResults.value = []
 		}
+	})
+
+
+	// это конечно классно
+	// но в index.html пришлось подключить доп. либу (gsap)
+	const beforeEnter = (el) => {
+		el.style.opacity = 0
+		el.style.height = 0
 	}
-}
+	const enter = (el, done) => {
+		gsap.to(el, { 
+			opacity: 1, 
+			height: '34px', // 30px
+			delay: el.dataset.index * .15,
+			onComplete: done
+		})
+	}
+	const leave = (el, done) => {
+		gsap.to(el, { 
+			opacity: 0, 
+			height: 0,
+			delay: el.dataset.index * .15,
+			onComplete: done
+		})
+	}
 </script>

@@ -23,27 +23,20 @@
 	</main>
 </template>
 
-<script>
-import { useStore } from 'vuex'
+<script setup>
+	import { useStore } from 'vuex'
 
-import Multiselect from '@vueform/multiselect'
-import { computed, ref } from '@vue/reactivity'
+	import Multiselect from '@vueform/multiselect'
+	import { computed, ref } from '@vue/reactivity'
 
-import VideoList from '../components/VideoList.vue'
+	import VideoList from '../components/VideoList.vue'
 
-export default {
-	setup() {
-		const store = useStore()
-		const categories = store.getters.getCategories
-		const videos = store.getters.getVideos
+	const store = useStore()
+	const categories = store.getters.getCategories
+	const videos = store.getters.getVideos
 
-		const currentCategory = ref(0)
-		const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)
-
-		return { categories, currentCategory, categoryName, videos }
-	},
-	components: { Multiselect, VideoList }
-}
+	const currentCategory = ref(0)
+	const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)
 </script>
 
 
