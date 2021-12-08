@@ -14,65 +14,60 @@
 	</div>
 </template>
 
-<script>
-import { computed, ref } from '@vue/reactivity'
-import { watch } from 'vue'
+<script setup>
+	import { computed, ref } from '@vue/reactivity'
+	import { watch } from 'vue'
 
-export default {
-	props: {
+	const props = defineProps({
 		shareLink: {
 			type: String,
 			required: true
 		}
-	},
-	setup(props) {
-		const title = ref(document.title)
-		const shareLink = computed(() => props.shareLink)
+	})
 
-		watch(shareLink, (n, o) => title.value = document.title)
+	const title = ref(document.title)
+	const shareLink = computed(() => props.shareLink)
 
-		const links = computed(() => [
-			{
-				title: 'Вконтакте', 
-				href: `https://vk.com/share.php?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/color/48/000000/vk-com.png',
-				color: '#1976d2'
-			},
-			{
-				title: 'Facebook', 
-				href: `https://www.facebook.com/sharer.php?src=sp&u=${shareLink.value}&title=${title.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/fluency/48/000000/facebook.png',
-				color: '#115a9b'
-			},
-			{
-				title: 'Одноклассники', 
-				href: `https://connect.ok.ru/offer?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/color/48/000000/odnoklassniki.png',
-				color: '#ff9800'
-			},
-			{
-				title: 'Telegram', 
-				href: `https://t.me/share/url?url=${shareLink.value}&text=${title.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/color/50/000000/telegram-app.png',
-				color: '#29b6f6'
-			},
-			{
-				title: 'WhatsApp', 
-				href: `https://api.whatsapp.com/send?text=${title.value}%20${shareLink.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/color/48/000000/whatsapp.png',
-				color: '#4fc75e'
-			},
-			{
-				title: 'Мой мир', 
-				href: `https://connect.mail.ru/share?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
-				icon: 'https://img.icons8.com/color/48/000000/apple-mail.png',
-				color: '#1e88e5'
-			}
-		])
+	watch(shareLink, (n, o) => title.value = document.title)
 
-		return { links, shareLink }
-	}
-}
+	const links = computed(() => [
+		{
+			title: 'Вконтакте', 
+			href: `https://vk.com/share.php?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/color/48/000000/vk-com.png',
+			color: '#1976d2'
+		},
+		{
+			title: 'Facebook', 
+			href: `https://www.facebook.com/sharer.php?src=sp&u=${shareLink.value}&title=${title.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/fluency/48/000000/facebook.png',
+			color: '#115a9b'
+		},
+		{
+			title: 'Одноклассники', 
+			href: `https://connect.ok.ru/offer?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/color/48/000000/odnoklassniki.png',
+			color: '#ff9800'
+		},
+		{
+			title: 'Telegram', 
+			href: `https://t.me/share/url?url=${shareLink.value}&text=${title.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/color/50/000000/telegram-app.png',
+			color: '#29b6f6'
+		},
+		{
+			title: 'WhatsApp', 
+			href: `https://api.whatsapp.com/send?text=${title.value}%20${shareLink.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/color/48/000000/whatsapp.png',
+			color: '#4fc75e'
+		},
+		{
+			title: 'Мой мир', 
+			href: `https://connect.mail.ru/share?url=${shareLink.value}&title=${title.value}&utm_source=share2`,
+			icon: 'https://img.icons8.com/color/48/000000/apple-mail.png',
+			color: '#1e88e5'
+		}
+	])
 </script>
 
 <style lang="scss" scoped>
