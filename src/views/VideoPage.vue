@@ -17,7 +17,9 @@
 				<div class="vpage__history">
 					<h3 class="vpage__history-title">Итория просмотров</h3>
 					<p v-if="!historyVideos.length">История пуста</p>
-					<VideoList v-else :videos="historyVideos"></VideoList>
+					<div v-else class="vpage__history-container">
+						<VideoList :videos="historyVideos"></VideoList>
+					</div>
 				</div>
 			</div>
 		</div>

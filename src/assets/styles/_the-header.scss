@@ -114,11 +114,10 @@
 		line-height: normal;
 		transition: all .4s;
 		float: right;
-		box-shadow: 0 0 4px transparent;
 
 		&:focus {
 			outline: none;
-			box-shadow: 0 0 4px var(--color-primary);
+			background: var(--color-white);
 		}
 	}
 	&__search-btn-cancel {

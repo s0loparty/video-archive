@@ -56,11 +56,14 @@
 		background-color: var(--color-light);
 		padding: calc(var(--space) / 4);
 		border-radius: var(--rounded);
-		overflow: auto;
 
 		@media screen and (min-width: $bp-md) {
 			max-height: 70vh;
 		}
+	}
+	&__history-container {
+		overflow: auto;
+		height: calc(100% - 30px);
 	}
 	&__history-title {
 		font-weight: bold;
