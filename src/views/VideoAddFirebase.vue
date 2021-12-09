@@ -126,6 +126,9 @@
 			display: block;
 			width: 100%;
 			border-radius: 4px;
+			max-height: 260px;
+			min-width: 200px;
+			height: 100%;
 		}
 	}
 	#canvases {

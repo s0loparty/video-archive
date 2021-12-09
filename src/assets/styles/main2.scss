@@ -51,7 +51,7 @@ a, button {
 	padding: 0 calc(var(--space) / 2);
 }
 
-.main {
+.page {
 	&__header {
 		display: flex;
 		flex-wrap: wrap;
@@ -59,10 +59,13 @@ a, button {
 		justify-content: space-between;
 		gap: calc(var(--space) / 2);
 
+		margin-top: calc(var(--space) / 2);
 		margin-bottom: calc(var(--space) / 2);
 	}
 	&__title {
 		color: inherit;
+		font-size: 2rem;
+		font-weight: bold;
 	}
 	&__category {
 		min-width: 200px;

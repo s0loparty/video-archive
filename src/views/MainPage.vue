@@ -1,19 +1,19 @@
 <template>
-	<main class="main">
+	<main class="page">
 		<div class="container">
-			<div class="main__header">
-				<h2 class="main__title">
+			<div class="page__header">
+				<div class="page__title">
 					Все ролики
 					<span v-if="categoryName">({{ categoryName }})</span>
-				</h2>
-				<div class="main__category">
+				</div>
+				<div class="page__category">
 					<Multiselect
 						v-model="currentCategory"
 						label="title"
 						mode="single"
 						valueProp="id"
 						:options="categories"
-						placeholder="Выберать категорию"
+						placeholder="Выбрать категорию"
 					/>
 				</div>
 			</div>
