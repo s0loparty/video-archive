@@ -14,7 +14,7 @@
 	&__player-wrap {
 		position: relative;
 		height: 70vh;
-		min-height: 300px;
+		min-height: 200px;
 		border-radius: var(--rounded);
 		overflow: hidden;
 		background-position: center;
@@ -64,6 +64,14 @@
 	&__history-container {
 		overflow: auto;
 		height: calc(100% - 30px);
+
+		@include mobile-wrap(0, 0, 10px);
+
+		& .video__list {
+			position: unset;
+			width: unset;
+			left: unset;
+		}
 	}
 	&__history-title {
 		font-weight: bold;
