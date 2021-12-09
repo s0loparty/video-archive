@@ -5,12 +5,39 @@
 	--color-dark: #1b1b27;
 	--color-white: #fff;
 	--color-light: #eaecef;
+	--color-text: #2c3e50;
+	--color-text-hover: #d4d4d4;
+	--color-nav-link: #d4d4d4;
+	--color-nav-link-hover: #fff;
 
 	--header-h: 70px;
 
 	--z-sticky: 50;
 	--space: 40px;
 	--rounded: 4px;
+}
+
+:root[data-theme="dark"] {
+	--color-primary: #42b983;
+	--color-secondary: #282836;
+	--color-gray: #6c6c6c;
+	--color-dark: #1b1b27;
+	--color-white: #10101b;
+	--color-light: #15151e;
+	--color-text: #b4b4bb;
+	--color-text-hover: rgb(230, 230, 230);
+	--color-nav-link: #c7c7c7;
+	--color-nav-link-hover: #dddddd;
+
+	--header-h: 70px;
+
+	--z-sticky: 50;
+	--space: 40px;
+	--rounded: 4px;
+
+	// multiselect
+	--ms-bg: var(--color-dark);
+	--ms-border-color: var(--color-secondary);
 }
 
 $space: 40px;
@@ -33,8 +60,9 @@ $bp-smx: 480px;
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	padding-top: calc(var(--header-h) + (var(--space) / 2));
-	color: var(--color-secondary);
 	min-height: 100vh;
+	color: var(--color-text);
+	background-color: var(--color-white);
 
 	&.overflow-y {overflow-y: hidden;}
 }
@@ -99,6 +127,7 @@ a, button {
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
 	width: 7px;
+	height: 7px;
 }
 
 *::-webkit-scrollbar-track {
