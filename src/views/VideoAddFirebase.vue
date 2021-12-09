@@ -126,7 +126,7 @@
 			display: block;
 			width: 100%;
 			border-radius: 4px;
-			max-height: 260px;
+			max-height: 210px;
 			min-width: 200px;
 			height: 100%;
 		}
