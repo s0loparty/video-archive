@@ -13,5 +13,5 @@
 	const store = useStore()
 	const history = store.getters['history/getHistory']
 	const allVideos = store.getters.getVideos
-	const videos = history.map(item => allVideos.find(i => i.id == item))
+	const videos = history.map(item => allVideos.find(i => i.id == item)).reverse()
 </script>
