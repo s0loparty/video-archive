@@ -66,17 +66,19 @@ body {
 	min-height: 100vh;
 	color: var(--color-text);
 	background-color: var(--color-white);
+	transition: all .4s;
 
 	&.overflow-y {overflow-y: hidden;}
 }
 a, button {
-	transition: .2s ease,color .2s ease,border .2s ease;
+	transition: .2s ease, color .2s ease, border .2s ease;
 }
 * {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 	border: 0;
+
 }
 .container {
 	padding: 0 calc(var(--space) / 2);
