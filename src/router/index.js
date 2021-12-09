@@ -43,7 +43,13 @@ const routes = [
 
 const router = createRouter({
 	history: createWebHashHistory(process.env.BASE_URL),
-	routes
+	routes,
+
+	// https://next.router.vuejs.org/guide/advanced/scroll-behavior.html#scroll-behavior
+	scrollBehavior(to, from, savedPosition) {
+		const obj = { behavior: 'smooth', top: 0 }
+		return savedPosition ?? obj
+	}
 })
 
 router.beforeEach((to, from, next) => {
