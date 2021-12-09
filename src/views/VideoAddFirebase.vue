@@ -31,7 +31,7 @@
 					</form>
 				</section>
 				<div class="video-info">
-					<img :src="video.preview.length ? video.preview : 'https://via.placeholder.com/380x210?text=No+video+preview'"/>
+					<img :src="video.preview.length ? video.preview : 'https://via.placeholder.com/460x260?text=No+video+preview'"/>
 					<video :src="video.source" ref="videoElement" controls autoplay muted></video>
 				</div>
 			</div>
