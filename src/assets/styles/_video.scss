@@ -2,7 +2,6 @@
 	&__list {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		// justify-content: space-between;
 		grid-gap: calc(var(--space) / 2);
 
 		&--max-w {
@@ -10,7 +9,10 @@
 			justify-content: flex-start;
 		}
 
-		@media screen and (max-width: $bp-sm) {
+		@media screen and (max-width: $bp-md) {
+			grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		}
+		@media screen and (max-width: $bp-smx) {
 			grid-template-columns: 1fr;
 		}
 
@@ -28,6 +30,7 @@
 
 		@media screen and (max-width: 640px) {
 			min-height: 200px;
+			max-width: 100%;
 		}
 
 		@media screen and (max-width: $bp-smx) {
