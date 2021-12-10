@@ -9,7 +9,7 @@
   "dependencies": {
     "@vueform/multiselect": "^2.2.1",
     "core-js": "^3.6.5",
-    "jsonp": "^0.2.1",
+    "plyr": "^3.6.9",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

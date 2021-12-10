@@ -4,7 +4,11 @@
 			<div class="vpage__wrap">
 				<div class="vpage__content">
 					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">
-						<iframe :src="video.source" frameborder="0" allowfullscreen class="vpage__player"></iframe>
+						<!-- <iframe :src="video.source" frameborder="0" allowfullscreen class="vpage__player"></iframe> -->
+
+						<video ref="test" id="player" playsinline controls :data-poster="video.preview">
+							<source :src="video.source" type="video/mp4" />
+						</video>
 					</div>
 					<div class="vpage__info">
 						<h2 class="vpage__title">{{ video.title }}</h2>
@@ -27,9 +31,11 @@
 </template>
 
 <script setup>
-	import { computed } from "vue"
+	import { computed, ref, onMounted } from "vue"
 	import { useRoute } from "vue-router"
 	import { useStore } from 'vuex'
+
+	import Plyr from 'plyr'
 
 	import BaseShareLink from '@/components/BaseShareLink'
 	import VideoList from "../components/VideoList.vue"
@@ -42,11 +48,15 @@
 	const allVideos = store.getters.getVideos
 	const history = store.getters['history/getHistory']
 
-	// window.addEventListener('resize', e => {
-	// 	const w = document.documentElement.clientWidth
-	// 	const h = document.documentElement.clientHeight
-	// 	const playerWrap = document.querySelector('.vpage__player-wrap')
-	// })
+	const videoPlayer = ref(null)
+	onMounted(() => {
+		videoPlayer.value = new Plyr(document.getElementById('player'), {
+			tooltips: { controls: true, seek: true },
+			title: video.value.title,
+			blankVideo: video.value.source,
+			urls: { download: video.value.source },
+		})
+	})
 
 	const historyVideos = history.map(item => allVideos.find(v => v.id == item))
 </script>

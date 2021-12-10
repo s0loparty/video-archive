@@ -15,6 +15,9 @@
 	--z-sticky: 50;
 	--space: 40px;
 	--rounded: 4px;
+
+	// plyr
+	--plyr-color-main: var(--color-primary);
 }
 
 :root[data-theme="dark"] {
