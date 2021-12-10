@@ -137,13 +137,12 @@
 		justify-content: center;
 
 		&:focus {outline: none;}
-
-		&--show {
-			display: inline-flex;
-		}
+		&--show {display: inline-flex;}
+		
+		& svg {fill: var(--color-text);}
 	}
 	&__search-results {
-		background: #fff;
+		background: var(--color-white);
 		position: absolute;
 		top: var(--space);
 		left: 0;
@@ -153,6 +152,7 @@
 		border-bottom-right-radius: var(--rounded);
 		box-shadow: 0 0 3px var(--color-secondary);
 		display: grid;
+		overflow-y: hidden;
 		z-index: var(--z-sticky);
 	}
 	&__search-item {
@@ -161,7 +161,7 @@
 		align-items: center;
 		padding-left: calc(var(--space) / 4);
 		text-decoration: none;
-		color: var(--color-secondary);
+		color: var(--color-text);
 
 		&:hover {color: var(--color-primary);}
 	}

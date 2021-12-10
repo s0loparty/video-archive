@@ -42,5 +42,11 @@
 	const allVideos = store.getters.getVideos
 	const history = store.getters['history/getHistory']
 
+	// window.addEventListener('resize', e => {
+	// 	const w = document.documentElement.clientWidth
+	// 	const h = document.documentElement.clientHeight
+	// 	const playerWrap = document.querySelector('.vpage__player-wrap')
+	// })
+
 	const historyVideos = history.map(item => allVideos.find(v => v.id == item))
 </script>

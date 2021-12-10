@@ -97,8 +97,8 @@
 	const enterQuery = e => inputQuery.value = e.target.value
 
 	document.body.addEventListener('click', e => {
-		if (!e.target.classList.contains('header__search-results')) {
-			clearInputQuery()
+		if (!e.target.classList.contains('header__search-results') && !e.target.classList.contains('header__search-input')) {
+			clearSearchResults()
 		}
 	})
 
@@ -112,8 +112,8 @@
 	const enter = (el, done) => {
 		gsap.to(el, { 
 			opacity: 1, 
-			height: '34px', // 30px
-			delay: el.dataset.index * .15,
+			height: '35px', // 30px
+			delay: el.dataset.index * .15, // .15
 			onComplete: done
 		})
 	}
@@ -121,7 +121,7 @@
 		gsap.to(el, { 
 			opacity: 0, 
 			height: 0,
-			delay: el.dataset.index * .15,
+			delay: el.dataset.index * .15, // .15
 			onComplete: done
 		})
 	}
