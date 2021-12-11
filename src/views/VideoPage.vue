@@ -58,5 +58,5 @@
 		})
 	})
 
-	const historyVideos = history.map(item => allVideos.find(v => v.id == item))
+	const historyVideos = (history.map(item => allVideos.find(v => v.id == item))).reverse()
 </script>

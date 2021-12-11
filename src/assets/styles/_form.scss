@@ -12,21 +12,22 @@
 		box-sizing: border-box;
 
 		background-color: var(--color-white);
-		color: #444;
-		border: 1px solid #ccc;
+		color: var(--color-text);
+		border: 1px solid var(--color-secondary);
 
 		padding: 0 10px;
 		min-height: 40px;
 		border-radius: 4px;
 
 		transition: all .3s;
+		box-shadow: 0 0 4px transparent;
 		&:focus {
 			outline: none;
-			border-color: var(--color-secondary);
+			box-shadow: 0 0 4px var(--color-primary);
 		}
 		&:disabled {
 			background-color: var(--body-bg);
-			color: var(--color-secondary);
+			cursor: not-allowed;
 		}
 	}
 	&__small {

@@ -29,10 +29,17 @@
 							</div>
 						</div>
 					</form>
+					<hr>
+					<img :src="video.preview.length ? video.preview : 'https://via.placeholder.com/460x260?text=No+video+preview'"/>
 				</section>
 				<div class="video-info">
-					<img :src="video.preview.length ? video.preview : 'https://via.placeholder.com/460x260?text=No+video+preview'"/>
-					<video :src="video.source" ref="videoElement" controls autoplay muted></video>
+					<video 
+						:src="video.source" 
+						ref="videoElement" 
+						controls 
+						autoplay 
+						muted
+					></video>
 				</div>
 			</div>
 
@@ -65,44 +72,57 @@
 	
 
 	watch(fbLink, async (newValue, oldVAlue) => {
-		if (!~newValue.indexOf('firebasestorage.googleapis.com')) return console.warn('bad url')
+		if (!~newValue.indexOf('firebasestorage.googleapis.com')) {
+			return console.warn('bad url')
+		}
 
 		if (newValue != video.source) {
 			document.getElementById('canvases').innerHTML = ''
 		}
 		
-		// json data info
-		// https://firebase.google.com/docs/reference/js/storage.fullmetadata
-		const res = await fetch(newValue.split('?alt')[0])
-		const data = await res.json()
-		const name = data.name.replaceAll('_', ' ').slice(0, -4)
-		
-		video.id = data.generation
-		video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
-		video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
-		video.source = newValue
+		try {
+			// json data info
+			// https://firebase.google.com/docs/reference/js/storage.fullmetadata
+			const res = await fetch(newValue.split('?alt')[0])
+			const data = await res.json()
 
-		videoElement.value.addEventListener('loadeddata', function() {
-			const duration = Math.floor(videoElement.value.duration)
-			const countPreviews = 30 // кол-во элементов
-			const oneTick = Math.floor(duration / countPreviews)
+			const name = data.name.replaceAll('_', ' ').slice(0, -4)
+			
+			video.id = data.generation
+			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
+			video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
+			video.source = newValue
 
-			for (let i = 0; i < countPreviews; i++) {	
-				if (videoElement.value.currentTime < duration) {
-					setTimeout(() => {
-						videoElement.value.currentTime = videoElement.value.currentTime += oneTick
+			videoElement.value.addEventListener('loadeddata', function() {
+				const duration = Math.floor(videoElement.value.duration)
+				const countPreviews = 30 // кол-во элементов
+				const oneTick = Math.floor(duration / countPreviews)
 
-						const item = document.createElement('canvas')
-						item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+				this.play()
+				this.width = 640
+				this.height = 360
 
-						document.getElementById('canvases').append(item)
+				for (let i = 0; i < countPreviews; i++) {	
+					if (videoElement.value.currentTime < duration) {
+						setTimeout(() => {
+							videoElement.value.currentTime = videoElement.value.currentTime += oneTick
 
-						const context = item.getContext('2d')
-						context.drawImage(videoElement.value, 0, 0, 320, 180)
-					}, i * 3000) // i * 3000
+							const item = document.createElement('canvas')
+							item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+							item.width = videoElement.value.width
+							item.height = videoElement.value.height
+
+							document.getElementById('canvases').append(item)
+
+							const context = item.getContext('2d')
+							context.drawImage(videoElement.value, 0, 0, this.width, this.height) // 320, 180
+						}, i * 3000) // i * 3000
+					}
 				}
-			}
-		})
+			})
+		} catch (er) {
+			console.error(er)
+		}
 	})
 </script>
 
@@ -118,7 +138,8 @@
 	}
 	.video-info {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		// grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: auto;
 		gap: 20px;
 		align-items: center;
 
@@ -126,9 +147,9 @@
 			display: block;
 			width: 100%;
 			border-radius: 4px;
-			max-height: 210px;
-			min-width: 200px;
-			height: 100%;
+			// max-height: 210px;
+			// min-width: 200px;
+			// height: 100%;
 		}
 	}
 	#canvases {
