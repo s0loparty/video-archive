@@ -24,6 +24,13 @@
 					</div>
 				</div>
 			</div>
+
+			<div v-if="similarVIdeos.length" class="vpage__similar-videos page">
+				<div class="page__header">
+					<div class="page__title">Похожие ролики</div>
+				</div>
+				<VideoList :videos="similarVIdeos"></VideoList>
+			</div>
 		</div>
 	</div>
 </template>
@@ -66,4 +73,9 @@
 	})
 
 	const historyVideos = (history.map(item => allVideos.find(v => v.id == item))).reverse()
+	const similarVIdeos = computed(() => {
+		return allVideos.filter(
+		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
+		&& v.id !== video.value.id)
+	})
 </script>

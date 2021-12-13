@@ -16,8 +16,13 @@
 </template>
 
 <script setup>
-	import { computed } from 'vue'
+	import { computed, onMounted } from 'vue'
 	import VideoItem from '../components/VideoItem.vue'
+
+	import LazyLoad from 'vanilla-lazyload'
+	onMounted(() => {
+		new LazyLoad()
+	})
 
 	const props = defineProps({
 		videos: {

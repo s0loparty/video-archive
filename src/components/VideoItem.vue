@@ -1,7 +1,8 @@
 <template>
 	<router-link :to="`/video/` + id" class="video__item">
 		<div class="video__title">{{ title }}</div>
-		<div class="video__preview" :style="`background-image: url(${preview})`"></div>
+		<div class="video__preview lazy" :data-bg="preview"></div>
+		<!-- <div class="video__preview lazy" :data-bg="preview" :style="`background-image: url(${preview})`"></div> -->
 	</router-link>
 </template>
 
@@ -14,7 +15,7 @@
 		preview: {
 			type: String,
 			required: false,
-			default: 'https://via.placeholder.com/300x160'
+			default: 'https://via.placeholder.com/640x160'
 		},
 		title: {
 			type: String,
