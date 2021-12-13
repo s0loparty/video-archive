@@ -18,19 +18,11 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 
-		&, & #player {
+		&, & video {
 			@media screen and (min-width: 1300px) {
 				max-height: 70vh;
 			}
 		}
-
-		// @media screen and (min-width: 1300px) {
-		// 	max-height: 70vh;
-
-		// 	& #player {
-		// 		max-height: 70vh;
-		// 	}
-		// }
 
 		@media screen and (max-width: $bp-smx) {
 			border-radius: 0;
