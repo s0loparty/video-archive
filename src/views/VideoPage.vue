@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="vpage">
+		<div :class="['vpage', { 'vpage--mb': !similarVIdeos.length }]">
 			<div class="vpage__wrap">
 				<div class="vpage__content">
 					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">

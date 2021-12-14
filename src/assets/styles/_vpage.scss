@@ -1,7 +1,10 @@
 .vpage {
+	&--mb {
+		margin-bottom: calc(var(--space) / 2);
+	}
 	&__wrap {
 		display: grid;
-		grid-template-columns: minmax(674px, 1fr) minmax(250px, 320px);
+		grid-template-columns: minmax(640px, 1fr) minmax(310px, 320px);
 		grid-gap: 20px;
 
 		@media screen and (max-width: $bp-lg) {
@@ -21,6 +24,9 @@
 		&, & video {
 			@media screen and (min-width: 1300px) {
 				max-height: 70vh;
+			}
+			@media screen and (max-width: $bp-lg) {
+				max-height: unset;
 			}
 		}
 
@@ -57,6 +63,11 @@
 		@media screen and (min-width: $bp-md) {
 			max-height: 70vh;
 		}
+		@media screen and (max-width: $bp-lg) {
+			max-height: unset;
+			background-color: transparent;
+			padding: 0;
+		}
 	}
 	&__history-container {
 		overflow: auto;
@@ -77,6 +88,7 @@
 
 	// SIMILAR VIDEOS // ПОХОЖИЕ ВИДЕО
 	&__similar-videos {
-		margin: var(--space) 0;
+		margin-top: var(--space);
+		margin-bottom: calc(var(--space) / 2);
 	}
 }
