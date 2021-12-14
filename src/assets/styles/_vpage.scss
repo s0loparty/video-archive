@@ -4,10 +4,19 @@
 	}
 	&__wrap {
 		display: grid;
-		grid-template-columns: minmax(640px, 1fr) minmax(310px, 320px);
+		grid-template-columns: minmax(860px, 1fr) minmax(310px, 320px);
 		grid-gap: 20px;
 
-		@media screen and (max-width: $bp-lg) {
+		&--col-3 {
+			grid-template-columns: minmax(860px, 1fr) minmax(310px, 320px) minmax(310px, 320px);
+		}
+
+		@media screen and (max-width: 1560px) {
+			&--col-3 {
+				grid-template-columns: minmax(860px, 1fr) minmax(310px, 320px);
+			}
+		}
+		@media screen and (max-width: 1240px) { // $bp-lg
 			grid-template-columns: minmax(300px, 1fr);
 		}
 
@@ -56,7 +65,7 @@
 		margin-top: calc(var(--space) / 2);
 	}
 	&__history {
-		background-color: var(--color-light);
+		// background-color: var(--color-light);
 		padding: calc(var(--space) / 4);
 		border-radius: var(--rounded);
 
@@ -66,7 +75,6 @@
 		@media screen and (max-width: $bp-lg) {
 			max-height: unset;
 			background-color: transparent;
-			padding: 0;
 		}
 	}
 	&__history-container {
@@ -84,6 +92,14 @@
 	&__history-title {
 		font-weight: bold;
 		margin-bottom: 10px;
+
+		display: inline-flex;
+		align-items: center;
+
+		& svg {
+			fill: var(--color-text);
+			margin-right: 10px;
+		}
 	}
 
 	// SIMILAR VIDEOS // ПОХОЖИЕ ВИДЕО
