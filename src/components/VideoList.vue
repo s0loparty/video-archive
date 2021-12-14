@@ -16,13 +16,13 @@
 </template>
 
 <script setup>
-	import { computed, onMounted } from 'vue'
+	import { computed, onUpdated, onMounted, ref } from 'vue'
 	import VideoItem from '../components/VideoItem.vue'
 
 	import LazyLoad from 'vanilla-lazyload'
-	onMounted(() => {
-		new LazyLoad()
-	})
+	const backgroundLazy = ref(null)
+	onMounted(() => backgroundLazy.value = new LazyLoad())
+	onUpdated(async () => await backgroundLazy.value.update())
 
 	const props = defineProps({
 		videos: {
