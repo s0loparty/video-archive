@@ -79,3 +79,7 @@
 		&& v.id !== video.value.id)
 	})
 </script>
+
+<script scoped>
+	import 'plyr/dist/plyr.css'
+</script>

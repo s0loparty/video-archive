@@ -56,6 +56,9 @@ $bp-md: 768px;
 $bp-sm: 576px;
 $bp-smx: 480px;
 
+// normalize
+@import '~normalize.css/normalize.min.css';
+
 // mixins
 @import '@/assets/styles/_mixins';
 

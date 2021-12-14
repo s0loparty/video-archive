@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			
-			<VideoList :videos="videos" :current-category="currentCategory"></VideoList>
+			<VideoList :videos="videos" :current-category="currentCategory" class="video--mb"></VideoList>
 		</div>
 	</main>
 </template>
