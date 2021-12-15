@@ -2,9 +2,11 @@
 	<the-header></the-header>
 	<router-view></router-view>
 	<TheToggleTheme></TheToggleTheme>
+	<!-- <TheSwitcher></TheSwitcher> -->
 </template>
 
 <script setup>
 	import TheHeader from "@/components/TheHeader.vue"
 	import TheToggleTheme from "./components/TheToggleTheme.vue";
+	import TheSwitcher from "@/components/TheSwitcher.vue"
 </script>

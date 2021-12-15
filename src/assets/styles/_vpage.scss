@@ -1,5 +1,7 @@
 .vpage {
 	$local-bp-lg: 1560px;
+	$max-h: 80vh;
+
 	&--mb {
 		margin-bottom: calc(var(--space) / 2);
 	}
@@ -34,7 +36,7 @@
 		& video {border-radius: var(--rounded);}
 		&, & video {
 			@media screen and (min-width: 1300px) {
-				max-height: 70vh;
+				max-height: $max-h;
 			}
 			@media screen and (max-width: $bp-lg) {
 				max-height: unset;
@@ -73,7 +75,7 @@
 		margin-bottom: calc(var(--space) / 2);
 
 		@media screen and (min-width: $bp-md) {
-			max-height: 70vh;
+			max-height: $max-h;
 		}
 		@media screen and (max-width: $bp-lg) {
 			max-height: unset;

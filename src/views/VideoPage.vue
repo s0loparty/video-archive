@@ -122,7 +122,7 @@
 		}
 	})
 
-	const historyVideos = (history.map(item => allVideos.find(v => v.id == item))).reverse()
+	const historyVideos = (history.map(item => allVideos.find(v => v.id === item.toString()))).reverse()
 	const similarVIdeos = computed(() => {
 		return allVideos.filter(
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
