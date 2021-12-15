@@ -9,7 +9,6 @@
   "dependencies": {
     "@vueform/multiselect": "^2.2.1",
     "core-js": "^3.6.5",
-    "normalize.css": "^8.0.1",
     "plyr": "^3.6.9",
     "vanilla-lazyload": "^17.5.0",
     "vue": "^3.0.0",
