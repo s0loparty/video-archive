@@ -71,11 +71,25 @@
 		background-size: cover;
 		background-position: center;
 		background-color: var(--color-secondary);
-		background-image: url(https://via.placeholder.com/290x160?text=This+is+video+item);
+		background-image: url(https://via.placeholder.com/320x180?text=This+is+video+item);
 		border-radius: inherit;
 		z-index: 1;
+		filter: brightness(var(--brightness));
 		
 		transition: transform .4s;
 		&:hover {transform: scale(1.15)}
+	}
+	&__next-progress {
+		position: absolute;
+		content: '';
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 50%;
+		background-color: var(--color-primary);
+		z-index: 2;
+		opacity: .7;
+		transition: width .4s;
 	}
 }

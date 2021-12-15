@@ -43,20 +43,13 @@
 					</div>
 				</div>
 			</div>
-<!-- 
-			<div v-if="similarVIdeos.length" class="vpage__similar-videos page">
-				<div class="page__header">
-					<div class="page__title">Похожие ролики</div>
-				</div>
-				<VideoList :videos="similarVIdeos"></VideoList>
-			</div> -->
 		</div>
 	</div>
 </template>
 
 <script setup>
 	import { computed, ref, onMounted, watch } from "vue"
-	import { useRoute } from "vue-router"
+	import { useRoute, useRouter } from "vue-router"
 	import { useStore } from 'vuex'
 
 	import Plyr from 'plyr'
@@ -66,6 +59,7 @@
 
 	const store = useStore()
 	const route = useRoute()
+	const router = useRouter()
 	const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
 	const shareLink = computed(() => location.origin + route.path)
 
@@ -83,11 +77,48 @@
 			poster: videoValue.preview
 		}
 	}
-	onMounted(initPlyr)
-	watch(video, (newVideoValue, o) => {
+
+	const goNextVideo = () => {
+		const item = document.querySelector(`.video__item[data-id="${nextVideo.value.id}"]`)
+		item.scrollIntoView({
+			block: 'start',
+			behavior: 'smooth'
+		})
+
+		const progress = document.createElement('div')
+		progress.classList.add('video__next-progress')
+		progress.setAttribute('style', 'width: 0%')
+		item.append(progress)
+		
+		const intervalProgress = setInterval(() => {
+			progress.style.width = +progress.style.width.slice(0, -1) + 1 + '%'
+		}, 100)
+		
+
+		setTimeout(() => {
+			clearInterval(intervalProgress)
+			progress.remove()
+			router.push('/video/' + nextVideo.value.id)
+		}, 11000)
+	}
+
+	onMounted(() => {
+		initPlyr()
+
+		plyrObj.value.on('ended', e => {
+			goNextVideo()
+			console.log('ended')
+		})
+	})
+	watch(video, (newVideoValue, _) => {
 		if (newVideoValue) {
 			plyrObj.value.destroy()
 			initPlyr(newVideoValue)
+
+			plyrObj.value.on('ended', e => {
+				goNextVideo()
+				console.log('ended')
+			})
 		}
 	})
 
@@ -97,6 +128,11 @@
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
 		&& v.id !== video.value.id)
 	})
+
+	// сделать по нормальному
+	// убрать из массива ролики уже просмотренные
+	// сделать включение и отключение авто-некст ролик
+	const nextVideo = computed(() => similarVIdeos.value.concat(allVideos).filter(v => v.id !== video.value.id).slice(0, 1)[0])
 </script>
 
 <script scoped>

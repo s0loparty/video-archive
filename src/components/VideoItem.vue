@@ -1,8 +1,7 @@
 <template>
-	<router-link :to="`/video/` + id" class="video__item">
+	<router-link :to="`/video/` + id" class="video__item" :data-id="id">
 		<div class="video__title">{{ title }}</div>
 		<div class="video__preview lazy" :data-bg="preview"></div>
-		<!-- <div class="video__preview lazy" :data-bg="preview" :style="`background-image: url(${preview})`"></div> -->
 	</router-link>
 </template>
 
