@@ -8,7 +8,7 @@
 <script setup>
 	defineProps({
 		id: {
-			type: String,
+			type: Number,
 			required: true
 		},
 		preview: {

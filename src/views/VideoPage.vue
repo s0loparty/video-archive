@@ -60,7 +60,7 @@
 	const store = useStore()
 	const route = useRoute()
 	const router = useRouter()
-	const video = computed(() => store.getters.getVideos.find(i => i.id === route.params.id))
+	const video = computed(() => store.getters.getVideos.find(v => v.id === +route.params.id))
 	const shareLink = computed(() => location.origin + route.path)
 
 	const allVideos = store.getters.getVideos
@@ -79,7 +79,18 @@
 	}
 
 	const goNextVideo = () => {
-		const item = document.querySelector(`.video__item[data-id="${nextVideo.value.id}"]`)
+		let item = document.querySelector(`.video__item[data-id="${nextVideo.value.id}"]`)
+
+		if (!item) {
+			const _temp_item = similarVIdeos.value.concat(historyVideos.filter(i => {
+				return video.value.id !== i.id && similarVIdeos.value.indexOf(i) < 0
+			}))[0]
+
+			item = document.querySelector(`.video__item[data-id="${_temp_item.id}"]`)
+			
+			if (!_temp_item) return console.log('_temp_item is empty');
+		}
+
 		item.scrollIntoView({
 			block: 'start',
 			behavior: 'smooth'
@@ -98,41 +109,39 @@
 		setTimeout(() => {
 			clearInterval(intervalProgress)
 			progress.remove()
-			router.push('/video/' + nextVideo.value.id)
-		}, 11000)
+			// router.push('/video/' + nextVideo.value.id)
+			router.push('/video/' + item.dataset.id)
+		}, 10500)
 	}
 
 	onMounted(() => {
 		initPlyr()
 
-		plyrObj.value.on('ended', e => {
-			goNextVideo()
-			console.log('ended')
-		})
+		plyrObj.value.on('ended', goNextVideo)
 	})
 	watch(video, (newVideoValue, _) => {
 		if (newVideoValue) {
 			plyrObj.value.destroy()
 			initPlyr(newVideoValue)
 
-			plyrObj.value.on('ended', e => {
-				goNextVideo()
-				console.log('ended')
-			})
+			plyrObj.value.on('ended', goNextVideo)
 		}
 	})
 
-	const historyVideos = (history.map(item => allVideos.find(v => v.id === item.toString()))).reverse()
+	const historyVideos = (history.map(item => allVideos.find(v => v.id === item))).reverse()
 	const similarVIdeos = computed(() => {
 		return allVideos.filter(
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
 		&& v.id !== video.value.id)
 	})
 
-	// сделать по нормальному
-	// убрать из массива ролики уже просмотренные
+	console.log(similarVIdeos);
+
+
+	// доработать логику
 	// сделать включение и отключение авто-некст ролик
-	const nextVideo = computed(() => similarVIdeos.value.concat(allVideos).filter(v => v.id !== video.value.id).slice(0, 1)[0])
+	const nextVideo = computed(() => allVideos.filter(v => !history.includes(v.id))[0])
+	
 </script>
 
 <script scoped>

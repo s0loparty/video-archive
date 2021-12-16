@@ -63,12 +63,13 @@ router.beforeEach((to, from, next) => {
 
 	if (to.name === 'video-page') {
 		const videos = store.getters.getVideos
-
-		if (!videos.some(v => v.id === to.params.id)) return next('/404')
+		const pageID = +to.params.id
 		
-		document.title = store.getters.getVideos.find(i => i.id === to.params.id).title
+		if (!videos.some(v => v.id === pageID)) return next('/404')
+		
+		document.title = store.getters.getVideos.find(v => v.id === pageID).title
 
-		store.commit('history/addIdInHistory', to.params.id)
+		store.commit('history/addIdInHistory', pageID)
 		store.commit('history/updateStorage')
 	}
 

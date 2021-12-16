@@ -13,6 +13,8 @@ export default createStore({
 		],
 		currentCategory: 0,
 		mobileMenu: false,
+		autoPlay: false,
+		autoNext: true,
 	},
 	getters: {
 		getCategories(state) {
@@ -26,6 +28,12 @@ export default createStore({
 		},
 		mobileMenu(state) {
 			return state.mobileMenu
+		},
+		autoPlay(state) {
+			return state.autoPlay
+		},
+		autoNext(state) {
+			return state.autoNext
 		}
 	},
 	mutations: {
@@ -34,6 +42,12 @@ export default createStore({
 		},
 		toggleMobileMenu(state) {
 			state.mobileMenu = !state.mobileMenu
+		},
+		toggleAutoPlay(state) {
+			state.autoPlay = !state.autoPlay
+		},
+		toggleAutoNext(state) {
+			state.autoNext = !state.autoNext
 		}
 	},
 	actions: {},

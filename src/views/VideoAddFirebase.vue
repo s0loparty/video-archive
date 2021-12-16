@@ -88,7 +88,7 @@
 
 			const name = data.name.replaceAll('_', ' ').slice(0, -4)
 			
-			video.id = data.generation
+			video.id = +data.generation
 			video.title = decodeURI(data.contentDisposition).split("*=utf-8''").pop().replaceAll('_', ' ').slice(0, -4)
 			video.categoryId = categories.find(i => name.indexOf(i.title) !== -1).id
 			video.source = newValue

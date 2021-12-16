@@ -38,7 +38,7 @@
 	})
 
 	const filtredVideos = computed(() => props.currentCategory 
-		? props.videos.filter(i => i.categoryId === props.currentCategory) 
+		? props.videos.filter(v => v.categoryId === props.currentCategory) 
 		: props.videos
 	)
 </script>
