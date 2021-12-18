@@ -9,7 +9,7 @@ export default createStore({
 		categories: [
 			{id: 1, title: 'Ted Ed'},
 			{id: 2, title: 'School of Life'},
-			{id: 3, title: 'JW'},
+			{id: 1337, title: 'Другие'},
 		],
 		currentCategory: 0,
 		mobileMenu: false,

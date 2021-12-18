@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div :class="['vpage', { 'vpage--mb': !similarVIdeos.length }]">
+		<div class="vpage">
 			<div :class="['vpage__wrap', { 'vpage__wrap--col-3': similarVIdeos.length }]">
 				<div class="vpage__content">
 					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">
@@ -23,7 +23,7 @@
 							<path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
 							<path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
 						</svg>
-						<span>Итория просмотров</span>
+						<span>История просмотров</span>
 					</h3>
 					<p v-if="!historyVideos.length">История пуста</p>
 					<div v-else class="vpage__history-container">

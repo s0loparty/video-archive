@@ -76,8 +76,9 @@
 			return console.warn('bad url')
 		}
 
-		if (newValue != video.source) {
+		if (newValue !== video.source) {
 			document.getElementById('canvases').innerHTML = ''
+			video.preview = ''
 		}
 		
 		try {

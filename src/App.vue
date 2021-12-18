@@ -8,5 +8,5 @@
 <script setup>
 	import TheHeader from "@/components/TheHeader.vue"
 	import TheToggleTheme from "./components/TheToggleTheme.vue";
-	import TheSwitcher from "@/components/TheSwitcher.vue"
+	// import TheSwitcher from "@/components/TheSwitcher.vue"
 </script>
