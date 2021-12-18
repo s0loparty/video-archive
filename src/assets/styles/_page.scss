@@ -1,0 +1,29 @@
+.page {
+	&__header {
+		display: grid;
+		grid-template-columns: auto auto;
+		align-items: center;
+		justify-content: space-between;
+		grid-gap: calc(var(--space) / 2);
+
+		margin-bottom: calc(var(--space) / 2);
+
+		@media screen and (max-width: $bp-md) {
+			grid-template-columns: auto;
+		}
+	}
+	&__title {
+		color: inherit;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	&__category {
+		min-width: 260px;
+		max-width: 300px;
+		width: 100%;
+
+		@media screen and (max-width: $bp-smx) {
+			max-width: 100%;
+		}
+	}
+}

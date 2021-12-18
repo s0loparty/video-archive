@@ -10,6 +10,7 @@
 					</div>
 					<div class="vpage__info">
 						<h2 class="vpage__title">{{ video.title }}</h2>
+						<small>{{ categoryName }}</small>
 
 						<div class="vpage__share">
 							<BaseShareLink :share-link="shareLink" />
@@ -49,7 +50,7 @@
 
 <script setup>
 	import { computed, ref, onMounted, watch } from "vue"
-	import { useRoute, useRouter } from "vue-router"
+	import { useRouter } from "vue-router"
 	import { useStore } from 'vuex'
 
 	import Plyr from 'plyr'
@@ -58,10 +59,10 @@
 	import VideoList from "../components/VideoList.vue"
 
 	const store = useStore()
-	const route = useRoute()
 	const router = useRouter()
-	const video = computed(() => store.getters.getVideos.find(v => v.id === +route.params.id))
-	const shareLink = computed(() => location.origin + route.path)
+	const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
+	const categoryName = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
+	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // eoute.path
 
 	const allVideos = store.getters.getVideos
 	const history = store.getters['history/getHistory']
@@ -109,7 +110,6 @@
 		setTimeout(() => {
 			clearInterval(intervalProgress)
 			progress.remove()
-			// router.push('/video/' + nextVideo.value.id)
 			router.push('/video/' + item.dataset.id)
 		}, 10500)
 	}
@@ -134,8 +134,6 @@
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
 		&& v.id !== video.value.id)
 	})
-
-	console.log(similarVIdeos);
 
 
 	// доработать логику

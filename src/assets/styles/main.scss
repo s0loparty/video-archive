@@ -49,7 +49,6 @@
 	--ms-caret-color: var(--ms-clear-color);
 }
 
-$space: 40px;
 $bp-xl2: 1600px;
 $bp-xl1: 1400px;
 $bp-xl: 1200px;
@@ -76,6 +75,11 @@ body {
 	color: var(--color-text);
 	background-color: var(--color-white);
 	transition: all .4s;
+	font-size: 1em;
+
+	@media screen and (max-width: $bp-smx) {
+		font-size: .9em;
+	}
 
 	&.overflow-y {overflow-y: hidden;}
 }
@@ -91,32 +95,6 @@ a, button {
 }
 .container {
 	padding: 0 calc(var(--space) / 2);
-}
-
-.page {
-	&__header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: space-between;
-		gap: calc(var(--space) / 2);
-
-		margin-bottom: calc(var(--space) / 2);
-	}
-	&__title {
-		color: inherit;
-		font-size: 2rem;
-		font-weight: bold;
-	}
-	&__category {
-		min-width: 200px;
-		max-width: 300px;
-		width: 100%;
-
-		@media screen and (max-width: $bp-smx) {
-			max-width: 100%;
-		}
-	}
 }
 
 .btn-toggle-theme {
@@ -152,6 +130,7 @@ a, button {
 	@import '@/assets/styles/_mobile-nav';
 }
 @import '@/assets/styles/_the-header';
+@import '@/assets/styles/_page';
 @import '@/assets/styles/_video';
 @import '@/assets/styles/_vpage';
 
