@@ -141,7 +141,7 @@
 	},
 	{
 		"id": 1639252538606266,
-		"title": "Тануки Японский Миф о Хитром Еноте",
+		"title": "Тануки Японский — Миф о Хитром Еноте",
 		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%A2%D0%B0%D0%BD%D1%83%D0%BA%D0%B8_%D0%AF%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%9C%D0%B8%D1%84_%D0%BE_%D0%A5%D0%B8%D1%82%D1%80%D0%BE%D0%BC_%D0%95%D0%BD%D0%BE%D1%82%D0%B5_TED_Ed.mp4?alt=media&token=2e7bd98a-3f9c-45af-b9a3-76f60738208f",
 		"categoryId": 1,
 		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%A2%D0%B0%D0%BD%D1%83%D0%BA%D0%B8%20%D0%AF%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%9C%D0%B8%D1%84%20%D0%BE%20%D0%A5%D0%B8%D1%82%D1%80%D0%BE%D0%BC%20%D0%95%D0%BD%D0%BE%D1%82%D0%B5%20TED%20Ed.png?alt=media&token=63c35038-376f-42f0-82f7-123d407111a1"
@@ -250,5 +250,47 @@
 		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA_%D0%BA%D0%B2%D0%B0%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BC%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0_%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D1%8F%D0%B5%D1%82_%D0%B3%D0%BB%D0%BE%D0%B1%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%BF%D0%BE%D1%82%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_TED_Ed.mp4?alt=media&token=ce93b53f-824e-41ca-b5c0-309b0dbb8f5e",
 		"categoryId": 1,
 		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA%20%D0%BA%D0%B2%D0%B0%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BC%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D1%8F%D0%B5%D1%82%20%D0%B3%D0%BB%D0%BE%D0%B1%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%BE%D1%82%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20TED%20Ed.png?alt=media&token=cc9d56f4-9d63-4b46-a59b-c0a28cccb98c"
+	},
+	{
+		"id": 1640024223725414,
+		"title": "Философия: Мишель Фуко",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FSchool%20of%20Life%2F%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F_%D0%9C%D0%B8%D1%88%D0%B5%D0%BB%D1%8C_%D0%A4%D1%83%D0%BA%D0%BE_The_School_of_Life.mp4?alt=media&token=a965b64a-ba39-4720-bcb4-4d17986ce3d1",
+		"categoryId": 2,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FSchool%20of%20Life%2F%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84%D0%B8%D1%8F%20%D0%9C%D0%B8%D1%88%D0%B5%D0%BB%D1%8C%20%D0%A4%D1%83%D0%BA%D0%BE%20The%20School%20of%20Life.png?alt=media&token=e3d61280-4cef-4be1-9ffa-be27e60b30bd"
+	},
+	{
+		"id": 1640025137987423,
+		"title": "Как нам использовать энергию черных дыр",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA_%D0%BD%D0%B0%D0%BC_%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C_%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8%D1%8E_%D1%87%D0%B5%D1%80%D0%BD%D1%8B%D1%85_%D0%B4%D1%8B%D1%80_TED_Ed.mp4?alt=media&token=6b9a7d81-7a14-46bb-be80-75a758c81554",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%9A%D0%B0%D0%BA%20%D0%BD%D0%B0%D0%BC%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8%D1%8E%20%D1%87%D0%B5%D1%80%D0%BD%D1%8B%D1%85%20%D0%B4%D1%8B%D1%80%20TED%20Ed.png?alt=media&token=4e549ee2-789e-467d-8cbf-e9a4a47a42cd"
+	},
+	{
+		"id": 1640031603984122,
+		"title": "Искусство: Оскар Нимейер",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FSchool%20of%20Life%2F%D0%98%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%BE_%D0%9E%D1%81%D0%BA%D0%B0%D1%80_%D0%9D%D0%B8%D0%BC%D0%B5%D0%B9%D0%B5%D1%80_The_School_of_Life.mp4?alt=media&token=0660725d-a027-47f5-865e-a32d4a53e851",
+		"categoryId": 2,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FSchool%20of%20Life%2F%D0%98%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%BE%20%D0%9E%D1%81%D0%BA%D0%B0%D1%80%20%D0%9D%D0%B8%D0%BC%D0%B5%D0%B9%D0%B5%D1%80%20The%20School%20of%20Life.png?alt=media&token=45a79b27-458e-4818-b39e-69dbd29b3d2d"
+	},
+	{
+		"id": 1640032283503855,
+		"title": "Безобразная История: «Петрушечная» резня 1937 года",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%91%D0%B5%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BD%D0%B0%D1%8F_%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%C2%AB%D0%9F%D0%B5%D1%82%D1%80%D1%83%D1%88%D0%B5%D1%87%D0%BD%D0%B0%D1%8F%C2%BB_%D1%80%D0%B5%D0%B7%D0%BD%D1%8F_1937_%D0%B3%D0%BE%D0%B4%D0%B0_TED_ED.mp4?alt=media&token=4deb6a37-23f7-48a7-93b5-b1858e5b5368",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%91%D0%B5%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BD%D0%B0%D1%8F%20%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20%C2%AB%D0%9F%D0%B5%D1%82%D1%80%D1%83%D1%88%D0%B5%D1%87%D0%BD%D0%B0%D1%8F%C2%BB%20%D1%80%D0%B5%D0%B7%D0%BD%D1%8F%201937%20%D0%B3%D0%BE%D0%B4%D0%B0%20TED%20ED.png?alt=media&token=5985275e-9bee-46c2-8142-0e7bd9d184da"
+	},
+	{
+		"id": 1640032277813481,
+		"title": "Легенда о Геракле — 12 подвигов в 8ми битном мире",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0_%D0%BE_%D0%93%D0%B5%D1%80%D0%B0%D0%BA%D0%BB%D0%B5_12_%D0%BF%D0%BE%D0%B4%D0%B2%D0%B8%D0%B3%D0%BE%D0%B2_%D0%B2_8_%D0%BC%D0%B8_%D0%B1%D0%B8%D1%82%D0%BD%D0%BE%D0%BC_%D0%BC%D0%B8%D1%80%D0%B5_TED_Ed.mp4?alt=media&token=909b5024-8cf2-484a-925c-b48423d4cb4d",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BE%20%D0%93%D0%B5%D1%80%D0%B0%D0%BA%D0%BB%D0%B5%2012%20%D0%BF%D0%BE%D0%B4%D0%B2%D0%B8%D0%B3%D0%BE%D0%B2%20%D0%B2%208%20%D0%BC%D0%B8%20%D0%B1%D0%B8%D1%82%D0%BD%D0%BE%D0%BC%20%D0%BC%D0%B8%D1%80%D0%B5%20TED%20Ed.png?alt=media&token=7cfc09b8-3dc7-4e06-bb7b-e26c1899af93"
+	},
+	{
+		"id": 1640032276500038,
+		"title": "Почему Вы должны прочитать «Божественную комедию»",
+		"source": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/videos%2FTed%20Ed%2F%D0%9F%D0%BE%D1%87%D0%B5%D0%BC%D1%83_%D0%92%D1%8B_%D0%B4%D0%BE%D0%BB%D0%B6%D0%BD%D1%8B_%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C_%C2%AB%D0%91%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%83%D1%8E_%D0%BA%D0%BE%D0%BC%D0%B5%D0%B4%D0%B8%D1%8E%C2%BB_TED_Ed.mp4?alt=media&token=747ca571-a36e-4881-8d96-ecf8eaf6644e",
+		"categoryId": 1,
+		"preview": "https://firebasestorage.googleapis.com/v0/b/vue-video-archive.appspot.com/o/previews%2FTed%20Ed%2F%D0%9F%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20%D0%92%D1%8B%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%BD%D1%8B%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%C2%AB%D0%91%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%83%D1%8E%20%D0%BA%D0%BE%D0%BC%D0%B5%D0%B4%D0%B8%D1%8E%C2%BB%20TED%20Ed.png?alt=media&token=228fab01-131c-42e3-9942-3aaccab2a73f"
 	}
 ]
