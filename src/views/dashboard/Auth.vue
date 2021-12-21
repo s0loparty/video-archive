@@ -40,8 +40,7 @@
 		btnSubmit.value.disabled = true
 		btnSubmit.value.dataset.loading = true
 
-		const FB_KEY = 'asd'
-		const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
+		const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`
 		
 		try {
 			const response = await fetch(url, {
@@ -54,14 +53,15 @@
 				})
 			})
 			const data = await response.json()
-
-			setTimeout(() => {
-				btnSubmit.value.disabled = false
-				delete btnSubmit.value.dataset.loading
-			}, 3000)
 			
 			if (data.error.errors.length) {
-				return alert('code: ' + data.error.code + ' / message: ' + data.error.errors[0].message)
+				// return alert('code: ' + data.error.code + ' / message: ' + data.error.errors[0].message)
+				store.commit('pushMessage', {
+					title: 'Error ' + data.error.code, 
+					text: data.error.errors[0].message
+				})
+				btnSubmit.value.disabled = false
+				delete btnSubmit.value.dataset.loading
 			}
 		} catch (error) {
 			console.log(error)

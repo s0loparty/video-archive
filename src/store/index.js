@@ -12,17 +12,21 @@ export default createStore({
 			{id: 2, title: 'School of Life'},
 			{id: 1337, title: 'Другие'},
 		],
+		messages: [],
 		currentCategory: 0,
 		mobileMenu: false,
 		autoPlay: false,
 		autoNext: true,
 	},
 	getters: {
+		getVideos(state) {
+			return [...state.videos].reverse()
+		},
 		getCategories(state) {
 			return state.categories
 		},
-		getVideos(state) {
-			return [...state.videos].reverse()
+		getMessages(state) {
+			return state.messages
 		},
 		getCurrentCategory(state) {
 			return state.currentCategory
@@ -40,6 +44,12 @@ export default createStore({
 	mutations: {
 		changeCurrentCategory(state, id) {
 			state.currentCategory = id
+		},
+		pushMessage(state, message = {}) {
+			message.time = new Date()
+			state.messages.push(message)
+
+			setTimeout(() => state.messages.shift(), 10000)
 		},
 		toggleMobileMenu(state) {
 			state.mobileMenu = !state.mobileMenu
