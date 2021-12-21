@@ -34,6 +34,24 @@ const routes = [
 			title: 'Добавить видео'
 		}
 	},
+	{
+		path: '/dashboard',
+		name: 'dashboard',
+		component: () => import('../views/dashboard/Dashboard.vue'),
+		redirect: '/dashboard/auth',
+		children: [
+			{
+				path: 'auth',
+				meta: { title: 'Админка - Авторизация' },
+				component: () => import('../views/dashboard/Auth.vue'),
+			},
+			{
+				path: 'add',
+				meta: { title: 'Админка - Добавить видео' },
+				component: () => import('../views/VideoAddFirebase.vue'),
+			}
+		]
+	},
 	{ 
 		path: '/:pathMatch(.*)*', 
 		name: 'NotFound', 

@@ -1,10 +1,12 @@
 :root {
 	--color-primary: #42b983;
 	--color-secondary: #2c3e50;
-	--color-gray: #6c6c6c;
+	// --color-gray: #6c6c6c;
 	--color-dark: #1b1b27;
 	--color-white: #fff;
 	--color-light: #eaecef;
+	--color-gray: #d7d7d7;
+	--color-blue: #85aeeb;
 	--color-text: #2c3e50;
 	--color-text-hover: #d4d4d4;
 	--color-nav-link: #d4d4d4;
@@ -16,18 +18,17 @@
 	--space: 40px;
 	--rounded: 4px;
 	--brightness: 1;
-
-	// plyr
-	--plyr-color-main: var(--color-primary);
 }
 
 :root[data-theme="dark"] {
 	--color-primary: #42b983;
 	--color-secondary: #282836;
-	--color-gray: #6c6c6c;
+	// --color-gray: #6c6c6c;
 	--color-dark: #1b1b27;
 	--color-white: #10101b;
 	--color-light: #15151e;
+	--color-gray: #383838;
+	--color-blue: #6b8ab7;
 	--color-text: #b4b4bb;
 	--color-text-hover: rgb(230, 230, 230);
 	--color-nav-link: #c7c7c7;
@@ -39,15 +40,8 @@
 	--space: 40px;
 	--rounded: 4px;
 	--brightness: .7;
-
-	// multiselect
-	--ms-bg: var(--color-dark);
-	--ms-border-color: var(--color-secondary);
-	--ms-dropdown-bg: var(--color-light);
-	--ms-dropdown-border-color: var(--color-dark);
-	--ms-option-bg-pointed: var(--color-primary);
-	--ms-caret-color: var(--ms-clear-color);
 }
+@import './components';
 
 $bp-xl2: 1600px;
 $bp-xl1: 1400px;

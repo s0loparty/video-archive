@@ -1,0 +1,14 @@
+:root {
+	// plyr
+	--plyr-color-main: var(--color-primary);
+}
+
+:root[data-theme="dark"] {
+	// multiselect
+	--ms-bg: var(--color-dark);
+	--ms-border-color: var(--color-secondary);
+	--ms-dropdown-bg: var(--color-light);
+	--ms-dropdown-border-color: var(--color-dark);
+	--ms-option-bg-pointed: var(--color-primary);
+	--ms-caret-color: var(--ms-clear-color);
+}

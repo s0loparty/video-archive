@@ -104,39 +104,20 @@
 
 				for (let i = 0; i < countPreviews; i++) {	
 					if (videoElement.value.currentTime < duration) {
+						setTimeout(() => {
+							const item = document.createElement('canvas')
+							item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+							item.width = videoElement.value.width
+							item.height = videoElement.value.height
 
-						// // создаем канвас когда ролик прогрузился
-						// this.oncanplay = function() {
-						// 	console.log("Can start playing video")
-						// 	const item = document.createElement('canvas')
-						// 	item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
-						// 	item.width = videoElement.value.width
-						// 	item.height = videoElement.value.height
+							document.getElementById('canvases').append(item)
 
-						// 	document.getElementById('canvases').append(item)
+							const context = item.getContext('2d')
+							context.drawImage(videoElement.value, 0, 0, this.width, this.height) // 320, 180
 
-						// 	const context = item.getContext('2d')
-						// 	context.drawImage(videoElement.value, 0, 0, this.width, this.height) // 320, 180
-						// }
-
-						// перемотка
-						setTimeout(async () => {
-							// создаем канвас когда ролик прогрузился
-							this.oncanplay = function() {
-								console.log("Can start playing video")
-								const item = document.createElement('canvas')
-								item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
-								item.width = videoElement.value.width
-								item.height = videoElement.value.height
-
-								document.getElementById('canvases').append(item)
-
-								const context = item.getContext('2d')
-								context.drawImage(videoElement.value, 0, 0, this.width, this.height) // 320, 180
-							}
-
+							// перемотка
 							videoElement.value.currentTime = videoElement.value.currentTime += oneTick
-						}, i * 3000) // i * 3000
+						}, i * 3000)
 					}
 				}
 
