@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 import dataVideos from '@/data/videos.json'
 import history from './modules/history'
+import auth from './modules/auth'
 
 export default createStore({
 	state: {
@@ -52,6 +53,7 @@ export default createStore({
 	},
 	actions: {},
 	modules: {
-		history
+		history,
+		auth
 	}
 })

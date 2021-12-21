@@ -30,9 +30,7 @@ const routes = [
 		path: '/video-add',
 		name: 'video-add',
 		component: () => import('../views/VideoAddFirebase.vue'),
-		meta: {
-			title: 'Добавить видео'
-		}
+		meta: { title: 'Добавить видео' }
 	},
 	{
 		path: '/dashboard',
@@ -43,11 +41,15 @@ const routes = [
 			{
 				path: 'auth',
 				meta: { title: 'Админка - Авторизация' },
+				name: 'dashboard-auth',
 				component: () => import('../views/dashboard/Auth.vue'),
 			},
 			{
 				path: 'add',
-				meta: { title: 'Админка - Добавить видео' },
+				meta: { 
+					title: 'Админка - Добавить видео',
+					auth: true
+				},
 				component: () => import('../views/VideoAddFirebase.vue'),
 			}
 		]
@@ -71,14 +73,25 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+	// SET TITLE
 	if (to.meta.title) {
 		document.title = to.meta.title
 	}
 
+	// MOBILE MENU
 	if (store.getters.mobileMenu) {
 		store.commit('toggleMobileMenu')
 	}
 
+	// AUTH
+	if(to.matched.some(record => record.meta.auth)) {
+		if (store.getters.auth) {
+			return next()
+		}
+		return next('/dashboard/auth')
+	}
+
+	// VIEW VIDEO
 	if (to.name === 'video-page') {
 		const videos = store.getters.getVideos
 		const pageID = +to.params.id
