@@ -2,18 +2,13 @@
 	<div class="container">
 		<div class="card card--sm">
 			<div class="card__wrap">
-				<div class="card__header">
-					<h2 class="card__title card__title--center">Авторизация</h2>
-				</div>
 				<div class="card__body">
-					<form class="form" @submit.prevent="submitForm">
+					<form class="form" @submit.prevent="handleSubmit">
 						<div class="form__group">
-							<div class="form__label">Логин</div>
-							<input v-model.trim="admin.login" type="text" class="form__input">
+							<input v-model.trim="adminValue.email" type="email" class="form__input" placeholder="Логин">
 						</div>
 						<div class="form__group">
-							<div class="form__label">Пароль</div>
-							<input v-model.trim="admin.password" type="password" class="form__input">
+							<input v-model.trim="adminValue.password" type="password" class="form__input" placeholder="Пароль">
 						</div>
 						<button ref="btnSubmit" class="btn">Войти</button>
 						<button @click.prevent="kekw" class="btn btn--danger" style="float:right">Забыл пароль</button>
@@ -26,46 +21,29 @@
 </template>
 
 <script setup>
+	import { useRouter } from 'vue-router'
 	import { useStore } from 'vuex'
 	import { reactive, ref } from 'vue'
 
+	const router = useRouter()
 	const store = useStore()
 	const btnSubmit = ref(null)
-	const admin = reactive({
-		login: '',
-		password: '',
-	})
+	const adminValue = reactive({ email: '', password: '' })
 
-	const submitForm = async () => {
+	if (store.getters['auth/getIsAuth']) {
+		router.push('/dashboard/add')
+	}
+
+	const handleSubmit = async () => {
 		btnSubmit.value.disabled = true
 		btnSubmit.value.dataset.loading = true
 
-		const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`
-		
-		try {
-			const response = await fetch(url, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					email: admin.login,
-					password: admin.password,
-					returnSecureToken: true,
-				})
-			})
-			const data = await response.json()
-			
-			if (data.error.errors.length) {
-				// return alert('code: ' + data.error.code + ' / message: ' + data.error.errors[0].message)
-				store.commit('pushMessage', {
-					title: 'Error ' + data.error.code, 
-					text: data.error.errors[0].message
-				})
-				btnSubmit.value.disabled = false
-				delete btnSubmit.value.dataset.loading
-			}
-		} catch (error) {
-			console.log(error)
+		if (await store.dispatch('auth/adminLogin', adminValue)) {
+			router.push('/dashboard/add')
 		}
+
+		btnSubmit.value.disabled = false
+		delete btnSubmit.value.dataset.loading
 	}
 
 	const kekw = () => alert('Забыл пароль? ОТ АДМИНКИ? Грац!...')
@@ -119,13 +97,13 @@
 	}
 
 	&--danger {
-		border-color: var(--color-red);
-		color: var(--color-red);
+		border-color: var(--color-danger);
+		color: var(--color-danger);
 
 		&:hover {
 			color: var(--color-white);
 			border-color: var(--color-white);
-			background-color: var(--color-red);
+			background-color: var(--color-danger);
 		}
 	}
 
@@ -146,10 +124,9 @@
 		
 		&:before {
 			position: absolute;
-			content: 'Wait ...';
+			content: '';
 			text-align: center;
 			z-index: 10;
-			background: var(--color-white);
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -158,7 +135,34 @@
 			align-items: center;
 			justify-content: center;
 			color: var(--color-secondary);
+
+			background-image: url('~@/assets/loading.gif');
+			background-size: 30px;
+			background-repeat: no-repeat;
+			background-position: center;
+			backdrop-filter: brightness(0.2);
 		}
 	}
 }
+</style>
+
+<style lang="scss" scoped>
+	.card {
+		margin-top: 5em;
+
+		&__wrap {
+			background-color: transparent;
+			border: 0;
+			padding: 0;
+			box-shadow: none;
+		}
+	}
+	.form {
+		&__group {margin-bottom: 2em;}
+		&__input {
+			min-height: 3em;
+			font-size: 1.4em;
+			padding: 0 20px;
+		}
+	}
 </style>

@@ -3,9 +3,13 @@
 		<div v-if="messages.length">
 			<div class="messages">
 				<div class="messages__list">
-					<div v-for="mess in messages" :key="mess.time" :class="['messages__item', { 'messages__item--':mess.type }]">
-						<div class="messages__title">{{ mess.title }}</div>
-						<div class="messages__text">{{ mess.text }}</div>
+					<div 
+						v-for="mess in messages" 
+						:key="mess.time" 
+						:class="['messages__item', mess.type ? `messages__item--${mess.type}` : '']"
+					>
+						<div v-if="mess.title" class="messages__title">{{ mess.title }}</div>
+						<div class="messages__text" v-html="mess.text"></div>
 					</div>
 				</div>
 			</div>
@@ -25,8 +29,8 @@
 <style lang="scss">
 	.messages {
 		position: absolute;
-		top: calc(var(--header-h) + calc(var(--space) / 2));
-		right: calc(var(--space) / 2);
+		bottom: calc(var(--space) / 2);
+		left: calc(var(--space) / 2);
 		max-width: 300px;
 		width: 100%;
 		
@@ -43,9 +47,13 @@
 			margin-bottom: calc(var(--space) / 4);
 
 			animation: message-opacity;
-			animation-duration: 5s;
+			animation-duration: 15s;
 
 			&:last-child {margin-bottom: 0;}
+
+			&--danger {background-color: var(--color-danger)}
+			&--info {background-color: var(--color-info)}
+			&--success {background-color: var(--color-primary)}
 		}
 		&__title {
 			font-weight: bold;
@@ -57,8 +65,8 @@
 	}
 
 	@keyframes message-opacity {
-		10% {opacity: .95}
-		85% {opacity: .95}
+		5% {opacity: .95}
+		95% {opacity: .95}
 		100% {opacity: 0}
 	}
 </style>

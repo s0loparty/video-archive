@@ -1,10 +1,17 @@
-import { createStore } from 'vuex'
+import { createStore, createLogger } from 'vuex'
 
 import dataVideos from '@/data/videos.json'
 import history from './modules/history'
 import auth from './modules/auth'
 
+const plugins = []
+
+if (process.env.NODE_ENV === 'development') {
+	plugins.push(createLogger())
+}
+
 export default createStore({
+	plugins,
 	state: {
 		videos: dataVideos,
 		categories: [
@@ -49,7 +56,7 @@ export default createStore({
 			message.time = new Date()
 			state.messages.push(message)
 
-			setTimeout(() => state.messages.shift(), 10000)
+			setTimeout(() => state.messages.shift(), 15000)
 		},
 		toggleMobileMenu(state) {
 			state.mobileMenu = !state.mobileMenu

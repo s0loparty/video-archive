@@ -20,9 +20,13 @@
 		border-radius: 4px;
 
 		transition: all .3s;
+
+		&--danger {border-color: var(--color-danger);}
+		&--success {border-color: var(--color-primary);}
+
 		&:focus {
 			outline: none;
-			border-color: var(--color-blue);
+			border-color: var(--color-info);
 		}
 		&:disabled {
 			background-color: var(--body-bg);

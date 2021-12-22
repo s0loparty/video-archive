@@ -84,12 +84,17 @@ router.beforeEach((to, from, next) => {
 	}
 
 	// AUTH
-	if(to.matched.some(record => record.meta.auth)) {
-		if (store.getters.auth) {
-			return next()
-		}
+	if (to.meta.auth && store.getters['auth/getIsAuth']) {
+		return next()
+	} else if (to.meta.auth && !store.getters['auth/getIsAuth']) {
 		return next('/dashboard/auth')
 	}
+	// if(to.matched.some(record => record.meta.auth)) {
+	// 	if (store.getters.getIsAuth) {
+	// 		return next()
+	// 	}
+	// 	return next('/dashboard/auth')
+	// }
 
 	// VIEW VIDEO
 	if (to.name === 'video-page') {
