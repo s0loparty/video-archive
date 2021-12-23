@@ -40,6 +40,7 @@
 
 		if (await store.dispatch('auth/adminLogin', adminValue)) {
 			router.push('/dashboard/add')
+			store.commit('removeMessages')
 		}
 
 		btnSubmit.value.disabled = false
@@ -121,6 +122,9 @@
 	&[data-loading] {
 		position: relative;
 		overflow: hidden;
+		background: var(--color-white);
+		color: var(--color-white);
+		pointer-events: none;
 		
 		&:before {
 			position: absolute;
@@ -140,7 +144,6 @@
 			background-size: 30px;
 			background-repeat: no-repeat;
 			background-position: center;
-			backdrop-filter: brightness(0.2);
 		}
 	}
 }

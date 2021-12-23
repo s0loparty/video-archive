@@ -28,17 +28,18 @@ export default {
 		}
 	},
 	actions: {
-		async adminLogin({ commit, getters }, adminValue) {
+		async adminLogin({ commit, dispatch, getters }, adminValue) {
 			try {
 				const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`
 				const { data } = await axios.post(url, {...adminValue, returnSecureToken: true})
 
 				commit('setToken', data.idToken)
-
-				console.log('data: ', data)
 			} catch (e) {
 				console.warn(e.response.data.error.message);
-				commit('pushMessage', { text: error(e.response.data.error.message), type: 'danger' }, { root: true })
+				dispatch('pushMessage', { 
+					text: error(e.response.data.error.message), 
+					type: 'danger' }, { root: true }
+				)
 			} finally {
 				return getters.getIsAuth
 			}

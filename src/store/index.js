@@ -20,6 +20,7 @@ export default createStore({
 			{id: 1337, title: 'Другие'},
 		],
 		messages: [],
+		messageTimeout: 15000,
 		currentCategory: 0,
 		mobileMenu: false,
 		autoPlay: false,
@@ -34,6 +35,9 @@ export default createStore({
 		},
 		getMessages(state) {
 			return state.messages
+		},
+		getMessageTimeout(state) {
+			return state.messageTimeout
 		},
 		getCurrentCategory(state) {
 			return state.currentCategory
@@ -52,11 +56,14 @@ export default createStore({
 		changeCurrentCategory(state, id) {
 			state.currentCategory = id
 		},
-		pushMessage(state, message = {}) {
-			message.time = new Date()
+		removeMessages(state) {
+			state.messages = []
+		},
+		addOneMessage(state, message) {
 			state.messages.push(message)
-
-			setTimeout(() => state.messages.shift(), 15000)
+		},
+		removeOneMessage(state, id) {
+			state.messages.splice(id, 1)
 		},
 		toggleMobileMenu(state) {
 			state.mobileMenu = !state.mobileMenu
@@ -68,7 +75,17 @@ export default createStore({
 			state.autoNext = !state.autoNext
 		}
 	},
-	actions: {},
+	actions: {
+		pushMessage({ commit, getters }, message = {}) {
+			const time = new Date().toLocaleTimeString()
+			message.time = time
+			commit('addOneMessage', message)
+
+			setTimeout(() => {
+				commit('removeOneMessage', getters.getMessages.findIndex(m => m.time === time))
+			}, getters.getMessageTimeout)
+		}
+	},
 	modules: {
 		history,
 		auth

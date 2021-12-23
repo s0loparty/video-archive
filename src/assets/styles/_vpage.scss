@@ -64,16 +64,19 @@
 	}
 	&__title {
 		margin-top: 10px;
+		font-size: 1.6em;
 	}
 	&__share {
 		margin-top: calc(var(--space) / 2);
 	}
 	&__history {
-		// background-color: var(--color-light);
 		padding: calc(var(--space) / 4);
 		border-radius: var(--rounded);
 		margin-bottom: calc(var(--space) / 2);
 
+		@media screen and (min-width: $bp-smx) {
+			padding: 0;
+		}
 		@media screen and (min-width: $bp-md) {
 			max-height: $max-h;
 		}

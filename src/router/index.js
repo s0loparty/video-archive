@@ -1,62 +1,60 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store'
 
+const titleMain = 'Видео архив'
+const titleDashboard = 'Dashbaord'
+
 const routes = [
 	{
 		path: '/',
-		name: 'main',
+		name: 'main-page',
 		component: () => import('../views/MainPage.vue'),
-		meta: {
-			title: 'Видео архив'
-		}
+		meta: { title: titleMain }
 	},
 	{
 		path: '/video/:id',
 		name: 'video-page',
 		component: () => import('../views/VideoPage.vue'),
-		meta: {
-			title: 'Video page'
-		}
+		meta: { title: titleMain + ' :: Видео' }
 	},
 	{
 		path: '/history',
-		name: 'video-history',
+		name: 'history-page',
 		component: () => import('../views/HistoryPage.vue'),
-		meta: {
-			title: 'История просмотров'
-		}
-	},
-	{
-		path: '/video-add',
-		name: 'video-add',
-		component: () => import('../views/VideoAddFirebase.vue'),
-		meta: { title: 'Добавить видео' }
+		meta: { title: titleMain + ' :: История просмотров' }
 	},
 	{
 		path: '/dashboard',
 		name: 'dashboard',
 		component: () => import('../views/dashboard/Dashboard.vue'),
 		redirect: '/dashboard/auth',
+		meta: { layout: 'dashboard' },
 		children: [
 			{
 				path: 'auth',
-				meta: { title: 'Админка - Авторизация' },
+				meta: { 
+					title: titleDashboard + ' :: Авторизация',
+					layout: 'auth'
+				},
 				name: 'dashboard-auth',
 				component: () => import('../views/dashboard/Auth.vue'),
 			},
 			{
 				path: 'add',
+				name: 'dashboard-add',
 				meta: { 
-					title: 'Админка - Добавить видео',
-					auth: true
+					title: titleDashboard + ' :: Добавить видео',
+					auth: true,
+					layout: 'dashboard'
 				},
-				component: () => import('../views/VideoAddFirebase.vue'),
+				component: () => import('../views/dashboard/AddVideoFirebase.vue'),
 			}
 		]
 	},
 	{ 
 		path: '/:pathMatch(.*)*', 
-		name: 'NotFound', 
+		name: 'NotFound',
+		meta: { title: titleMain + ' :: 404' },
 		component: () => import('../views/404.vue')
 	}
 ]
