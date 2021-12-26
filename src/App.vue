@@ -17,13 +17,19 @@ import TheMessage from "./components/TheMessage.vue";
 // import TheSwitcher from "@/components/TheSwitcher.vue"
 
 import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
+import { useStore } from 'vuex';
 
 export default {
 	setup() {
 		const route = useRoute()
 		const layoutString = computed(() => route.meta.layout ? route.meta.layout + '-layout' : 'main-layout')
-		
+
+		const store = useStore()
+		onMounted(async () => {
+			await store.dispatch('fetchVideos/requestVideos')
+		})
+
 		return { layoutString }
 	},
 	components: { 

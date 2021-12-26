@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store'
 
 const titleMain = 'Видео архив'
-const titleDashboard = 'Dashbaord'
+const titleDashboard = 'Dashboard'
 
 const routes = [
 	{
@@ -48,6 +48,16 @@ const routes = [
 					layout: 'dashboard'
 				},
 				component: () => import('../views/dashboard/AddVideoFirebase.vue'),
+			},
+			{
+				path: 'add-v2',
+				name: 'dashboard-add-v2',
+				meta: { 
+					title: titleDashboard + ' :: Добавить видео v2',
+					auth: true,
+					layout: 'dashboard'
+				},
+				component: () => import('../views/dashboard/AddVideo.vue'),
 			}
 		]
 	},

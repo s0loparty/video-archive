@@ -8,6 +8,7 @@
 	--color-gray: #d7d7d7;
 	--color-info: #85aeeb;
 	--color-danger: #dd6d6d;
+	--color-warning: #efa63a;
 	--color-text: #2c3e50;
 	--color-text-hover: #d4d4d4;
 	--color-nav-link: #d4d4d4;
@@ -31,6 +32,7 @@
 	--color-gray: #383838;
 	--color-info: #6b8ab7;
 	--color-danger: #dd6d6d;
+	--color-warning: #efa63a;
 	--color-text: #b4b4bb;
 	--color-text-hover: rgb(230, 230, 230);
 	--color-nav-link: #c7c7c7;
@@ -59,11 +61,6 @@ $bp-smx: 480px;
 // mixins
 @import '@/assets/styles/_mixins';
 
-.multiselect {width: inherit;}
-.multiselect.is-active {box-shadow: none;}
-.multiselect-option.is-selected {background: #4883b7;}
-.multiselect-option.is-selected.is-pointed {background: #3c6d99;}
-
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	padding-top: calc(var(--header-h) + (var(--space) / 2));
@@ -82,78 +79,36 @@ body {
 a, button {
 	transition: .2s ease, color .2s ease, border .2s ease;
 }
+h1 {
+	border: 1px solid var(--color-gray);
+	margin: 1em 0;
+}
 * {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 	border: 0;
+	line-height: normal;
 
 }
 .container {
 	padding: 0 calc(var(--space) / 2);
 }
 
-.btn-toggle-theme {
-	position: fixed;
-	right: var(--space);
-	bottom: var(--space);
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	background: #fff;
-	cursor: pointer;
-	box-shadow: 0 0 4px var(--color-dark);
-	z-index: var(--z-sticky);
-
-	& svg {
-		width: 18px;
-		height: 18px;
-		color: var(--color-dark);
-	}
-
-	&:hover {background: #ebebeb;}
-
-	@media screen and (max-width: $bp-md) {
-		right: calc(var(--space) / 2);
-		bottom: calc(var(--space) / 2);
-	}
-}
-
 @media screen and (max-width: $bp-md) {
 	@import '@/assets/styles/_mobile-nav';
 }
+
+// sections
 @import '@/assets/styles/_the-header';
 @import '@/assets/styles/_page';
 @import '@/assets/styles/_video';
 @import '@/assets/styles/_vpage';
 
-// elemets
-@import '@/assets/styles/_form';
+// elements
+@import '@/assets/styles/elements/_button';
+@import '@/assets/styles/elements/_card';
+@import '@/assets/styles/elements/_form';
 
-
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-	scrollbar-width: auto;
-	scrollbar-color: #455dbf var(--color-white);
-}
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-	width: 7px;
-	height: 7px;
-}
-
-*::-webkit-scrollbar-track {
-	background: var(--color-secondary);
-	border-radius: 8px;
-}
-
-*::-webkit-scrollbar-thumb {
-	background-color: var(--color-primary);
-	border-radius: 8px;
-	border: 0;
-}
+// scrollbar
+@import '@/assets/styles/elements/_scroll';

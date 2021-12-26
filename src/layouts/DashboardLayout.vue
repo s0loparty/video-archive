@@ -15,14 +15,24 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import TheHeader from '../components/TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
+
+import { getAuth, signOut } from 'firebase/auth'
 
 const store = useStore()
 const router = useRouter()
 
 const exit = () => {
-	store.commit('auth/logout')
-	router.push('/dashboard/auth')
+	const auth = getAuth()
+	signOut(auth).then(() => {
+		// Sign-out successful.
+		store.commit('auth/logout')
+		router.push('/dashboard/auth')
+	})
+	.catch((error) => {
+		console.log(error)
+		alert('Произошла неизвестная ошибка')
+	})
 }
 </script>
 
@@ -38,6 +48,7 @@ nav {
 	right: 0;
 	left: 0;
 	top: var(--header-h);
+	z-index: var(--z-sticky);
 }
 ul {
 	display: flex;

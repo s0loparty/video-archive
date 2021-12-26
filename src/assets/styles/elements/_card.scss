@@ -1,0 +1,38 @@
+.card {
+	&--md {
+		max-width: 768px;
+		margin: 0 auto;
+	}
+	&--sm {
+		max-width: 576px;
+		margin: 0 auto;
+	}
+	&__wrap {
+		&--grid-x2 {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+			gap: calc(var(--space) / 2);
+		}
+	}
+	&__header {
+		margin-bottom: calc(var(--space) / 2);;
+	}
+	&__title {
+		font-weight: bold;
+		margin: 0;
+		&--center {text-align: center;}
+	}
+	&__body {
+		box-shadow: 0 1px 0 0 var(--color-light), 0 0 0 1px var(--color-light);
+		background-color: var(--color-light);
+		padding: calc(var(--space) / 2);
+		border-radius: var(--rounded);
+
+		&--empty {
+			box-shadow: none;
+			background-color: transparent;
+			border-radius: 0;
+		}
+	}
+	&__footer { }
+}

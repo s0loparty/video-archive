@@ -3,6 +3,7 @@ import { createStore, createLogger } from 'vuex'
 import dataVideos from '@/data/videos.json'
 import history from './modules/history'
 import auth from './modules/auth'
+import fetchVideos from './modules/videos'
 
 const plugins = []
 
@@ -88,6 +89,7 @@ export default createStore({
 	},
 	modules: {
 		history,
-		auth
+		auth,
+		fetchVideos
 	}
 })

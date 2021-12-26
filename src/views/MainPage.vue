@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			
-			<VideoList :videos="videos" :current-category="currentCategory" class="video--mb"></VideoList>
+			<VideoList v-if="videos && videos.length" :videos="videos" :current-category="currentCategory" class="video--mb"></VideoList>
 		</div>
 	</main>
 </template>
@@ -33,7 +33,8 @@
 
 	const store = useStore()
 	const categories = store.getters.getCategories
-	const videos = store.getters.getVideos
+	// const videos = store.getters.getVideos
+	const videos = computed(() => store.getters['fetchVideos/getVideos'])
 
 	const currentCategory = ref(0)
 	const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)

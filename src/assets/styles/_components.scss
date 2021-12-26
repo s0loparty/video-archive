@@ -12,3 +12,8 @@
 	--ms-option-bg-pointed: var(--color-primary);
 	--ms-caret-color: var(--ms-clear-color);
 }
+
+.multiselect {width: inherit;}
+.multiselect.is-active {box-shadow: none;}
+.multiselect-option.is-selected {background: #4883b7;}
+.multiselect-option.is-selected.is-pointed {background: #3c6d99;}

@@ -45,7 +45,7 @@ const messageTimeout = (store.getters.getMessageTimeout / 1000) + 's'
 
 <style lang="scss" scoped>
 	.messages {
-		position: absolute;
+		position: fixed;
 		bottom: calc(var(--space) / 2);
 		left: calc(var(--space) / 2);
 		max-width: 300px;
@@ -72,6 +72,7 @@ const messageTimeout = (store.getters.getMessageTimeout / 1000) + 's'
 			&:last-child {margin-bottom: 0;}
 
 			&--danger {background-color: var(--color-danger)}
+			&--warn {background-color: var(--color-warning)}
 			&--info {background-color: var(--color-info)}
 			&--success {background-color: var(--color-primary)}
 		}
