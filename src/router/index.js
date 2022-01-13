@@ -14,7 +14,7 @@ const routes = [
 	{
 		path: '/video/:id',
 		name: 'video-page',
-		component: () => import('../views/VideoPage.vue'),
+		component: () => import('../views/VideoPage_v2.vue'),
 		meta: { title: titleMain + ' :: Видео' }
 	},
 	{
@@ -106,15 +106,17 @@ router.beforeEach((to, from, next) => {
 
 	// VIEW VIDEO
 	if (to.name === 'video-page') {
-		const videos = store.getters.getVideos
-		const pageID = +to.params.id
+		// const videos = store.getters.getVideos
+		// const videos = store.getters['fetchVideos/requestVideos']
+		// const pageID = +to.params.id
 		
-		if (!videos.some(v => v.id === pageID)) return next('/404')
+		// if (!videos.some(v => v.id === pageID)) return next('/404')
 		
-		document.title = store.getters.getVideos.find(v => v.id === pageID).title
+		// document.title = videos.find(v => v.id === pageID).title
+		// document.title = store.getters.getVideos.find(v => v.id === pageID).title
 
-		store.commit('history/addIdInHistory', pageID)
-		store.commit('history/updateStorage')
+		// store.commit('history/addIdInHistory', pageID)
+		// store.commit('history/updateStorage')
 	}
 
 	next()

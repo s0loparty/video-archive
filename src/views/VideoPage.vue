@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="vpage">
+		<div v-if="!isLoading" class="vpage">
 			<div :class="['vpage__wrap', { 'vpage__wrap--col-3': similarVIdeos.length }]">
 				<div class="vpage__content">
 					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">
@@ -45,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+		<div v-else>Loading ...</div>
 	</div>
 </template>
 
@@ -60,13 +61,43 @@
 
 	const store = useStore()
 	const router = useRouter()
-	const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
-	const categoryName = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
-	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // eoute.path
+	const allVideos = computed(() => store.getters['fetchVideos/getVideos'])
 
-	const allVideos = store.getters.getVideos
+	const video = ref(null)
+	// const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
+	
+	const categoryName = ref(null)
+	const plyrObj = ref(null)
+	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // eoute.path
+	const isLoading = ref(true)
+
+	// const allVideos = store.getters.getVideos
+	// const allVideos = store.getters['fetchVideos/requestVideos']
 	const history = store.getters['history/getHistory']
 
+	const initPlyr = (videoValue = null) => {
+		videoValue = videoValue ?? video.value
+		plyrObj.value = new Plyr('#player')
+		plyrObj.value.source = {
+			type: 'video',
+			title: videoValue.title,
+			sources: [{ src: videoValue.source, src: videoValue.source }],
+			poster: videoValue.preview
+		}
+	}
+
+	watch(allVideos, (n, _) => {
+		console.log(n)
+		video.value = allVideos.value.find(v => v.id === +router.currentRoute.value.params.id)
+		categoryName.value = store.getters.getCategories.find(c => c.id === video.value.categoryId).title
+
+		isLoading.value = false
+
+		initPlyr()
+		plyrObj.value.on('ended', goNextVideo)
+	})
+
+/*
 	const plyrObj = ref(null)
 	const initPlyr = (videoValue = null) => {
 		videoValue = videoValue ?? video.value
@@ -78,6 +109,16 @@
 			poster: videoValue.preview
 		}
 	}
+
+	onMounted(async () => {
+		allVideos.value = store.getters['fetchVideos/getVideos']
+		video.value = computed(() => allVideos.value.find(v => v.id === +router.currentRoute.value.params.id))
+		categoryName.value = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
+		isLoading.value = false
+
+		initPlyr()
+		plyrObj.value.on('ended', goNextVideo)
+	})
 
 	const goNextVideo = () => {
 		let item = document.querySelector(`.video__item[data-id="${nextVideo.value.id}"]`)
@@ -114,11 +155,6 @@
 		}, 10500)
 	}
 
-	onMounted(() => {
-		initPlyr()
-
-		plyrObj.value.on('ended', goNextVideo)
-	})
 	watch(video, (newVideoValue, _) => {
 		if (newVideoValue) {
 			plyrObj.value.destroy()
@@ -128,9 +164,9 @@
 		}
 	})
 
-	const historyVideos = (history.map(item => allVideos.find(v => v.id === item))).reverse()
+	const historyVideos = (history.map(item => allVideos.value.find(v => v.id === item))).reverse()
 	const similarVIdeos = computed(() => {
-		return allVideos.filter(
+		return allVideos.value.filter(
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
 		&& v.id !== video.value.id)
 	})
@@ -138,8 +174,8 @@
 
 	// доработать логику
 	// сделать включение и отключение авто-некст ролик
-	const nextVideo = computed(() => allVideos.filter(v => !history.includes(v.id))[0])
-	
+	const nextVideo = computed(() => allVideos.value.filter(v => !history.includes(v.id))[0])
+*/
 </script>
 
 <script scoped>

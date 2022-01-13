@@ -26,9 +26,7 @@ export default {
 		const layoutString = computed(() => route.meta.layout ? route.meta.layout + '-layout' : 'main-layout')
 
 		const store = useStore()
-		onMounted(async () => {
-			await store.dispatch('fetchVideos/requestVideos')
-		})
+		onMounted(() => store.dispatch('fetchVideos/requestVideos'))
 
 		return { layoutString }
 	},

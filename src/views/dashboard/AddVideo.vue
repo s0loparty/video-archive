@@ -99,6 +99,16 @@
 					</div>
 				</div>
 			</div>
+			<div class="card__wrap" style="margin: 20px 0;">
+				<div class="card__body" style="display: flex;gap: 20px;">
+					<video 
+						id="video-for-previews" 
+						src="https://via.placeholder.com/640x160" muted autoplay
+						style="border: 1px solid;margin: 0;"
+					></video>
+					<div id="canvases" style="display: flex;overflow: auto;"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -139,6 +149,37 @@ const handlerFile = (e, type) => {
 	if (type === VIDEO_TYPE_TITLE) {
 		inputVideo.value = file		
 		videoData.title = file.name.replaceAll('_', ' ')
+
+		document.getElementById('video-for-previews').src = URL.createObjectURL(file)
+		document.getElementById('video-for-previews').addEventListener('loadeddata', function() {
+			const duration = Math.floor(this.duration)
+			const countPreviews = 30 // кол-во элементов
+			const oneTick = Math.floor(duration / countPreviews)
+
+			this.play()
+			this.width = 640
+			this.height = 360
+
+			for (let i = 0; i < countPreviews; i++) {	
+				if (this.currentTime < duration) {
+					setTimeout(() => {
+						const item = document.createElement('canvas')
+						item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+						item.width = this.width
+						item.height = this.height
+
+						document.getElementById('canvases').append(item)
+
+						const context = item.getContext('2d')
+						context.drawImage(this, 0, 0, this.width, this.height) // 320, 180
+
+						// перемотка
+						this.currentTime = this.currentTime += oneTick
+					}, i * 3000)
+				}
+			}
+
+		})
 	} 
 	else if (type === PREVIEW_TYPE_TITLE) {
 		inputPreview.value = file
@@ -176,7 +217,7 @@ const uploadFile = async fileArgs => {
 	const categoryName = categories.find(i => i.id === videoData.categoryId)?.title
 	
 	const storage = getStorage() // ссылка на корень в корзине
-	const storageRef = StorageRef(storage, 'test/' + fileArgs.type + '/' + categoryName + '/' + fileArgs.name) // создание ссылки + имя файла
+	const storageRef = StorageRef(storage, 'uploaded/' + fileArgs.type + '/' + categoryName + '/' + fileArgs.name) // создание ссылки + имя файла
 
 	if (!categoryName && !fileContentType && !inputFile) {
 		return alert('Ошибка!')

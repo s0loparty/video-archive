@@ -18,7 +18,8 @@
 				</div>
 			</div>
 			
-			<VideoList v-if="videos && videos.length" :videos="videos" :current-category="currentCategory" class="video--mb"></VideoList>
+			<!-- class="video--mb" -->
+			<video-list v-if="videos && videos.length" :videos="videos" :current-category="currentCategory" />
 		</div>
 	</main>
 </template>
