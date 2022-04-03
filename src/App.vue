@@ -1,5 +1,9 @@
 <template>
-	<component :is="layoutString" v-if="layoutString" />
+	<ThePreloader v-if="allVideos === null"></ThePreloader>
+	<component v-else :is="layoutString" v-if="layoutString" />
+	<!-- <Suspense>
+		<component :is="layoutString" v-if="layoutString" />
+	</Suspense> -->
 
 	<TheToggleTheme></TheToggleTheme>
 	<TheMessage></TheMessage>
@@ -10,6 +14,7 @@ import MainLayout from "./layouts/MainLayout.vue";
 import AuthLayout from "./layouts/AuthLayout.vue";
 import DashboardLayout from "./layouts/DashboardLayout.vue";
 
+import ThePreloader from "./components/ThePreloader.vue";
 import TheToggleTheme from "./components/TheToggleTheme.vue";
 import TheMessage from "./components/TheMessage.vue";
 
@@ -26,15 +31,15 @@ export default {
 		const layoutString = computed(() => route.meta.layout ? route.meta.layout + '-layout' : 'main-layout')
 
 		const store = useStore()
-		onMounted(async () => {
-			await store.dispatch('fetchVideos/requestVideos')
-		})
+		const allVideos = computed(() => store.getters['fetchVideos/getVideos'])
 
-		return { layoutString }
+		onMounted(async () => await store.dispatch('fetchVideos/requestVideos'))
+
+		return { layoutString, allVideos }
 	},
 	components: { 
 		MainLayout, AuthLayout, DashboardLayout, 
-		TheToggleTheme, TheMessage 
+		ThePreloader, TheToggleTheme, TheMessage 
 	}
 }
 </script>

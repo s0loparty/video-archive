@@ -1,31 +1,25 @@
 {
-  "name": "vue-videos-v2",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "dependencies": {
-    "@vueform/multiselect": "^2.2.1",
-    "axios": "^0.24.0",
-    "core-js": "^3.6.5",
-    "firebase": "^9.6.1",
-    "plyr": "^3.6.9",
-    "vanilla-lazyload": "^17.5.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.2"
-  },
-  "_id": "vue-videos-v2@0.1.0",
-  "readme": "ERROR: No README data found!"
+	"name": "vue-videos-v2",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"@vueform/multiselect": "^2.2.1",
+		"axios": "^0.24.0",
+		"firebase": "^9.6.1",
+		"plyr": "^3.6.9",
+		"sass": "^1.49.11",
+		"vanilla-lazyload": "^17.5.0",
+		"vue": "^3.0.0",
+		"vue-router": "^4.0.0-0",
+		"vuex": "^4.0.0-0"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^1.6.1",
+		"vite": "^2.9.1"
+	}
 }

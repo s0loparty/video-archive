@@ -7,7 +7,7 @@ import fetchVideos from './modules/videos'
 
 const plugins = []
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.MODE === 'development') {
 	plugins.push(createLogger())
 }
 

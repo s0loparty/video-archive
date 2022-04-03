@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="vpage">
+		<div v-if="allVideos !== null & allVideos.length" class="vpage">
 			<div :class="['vpage__wrap', { 'vpage__wrap--col-3': similarVIdeos.length }]">
 				<div class="vpage__content">
 					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">
@@ -45,27 +45,35 @@
 				</div>
 			</div>
 		</div>
+		<div class="vpage">
+			<h1>Нет роликов</h1>
+		</div>
 	</div>
 </template>
 
 <script setup>
-	import { computed, ref, onMounted, watch } from "vue"
-	import { useRouter } from "vue-router"
+	import { computed, ref, onMounted, watch, onUpdated } from "vue"
+	import { useRoute, useRouter } from "vue-router"
 	import { useStore } from 'vuex'
 
 	import Plyr from 'plyr'
 
-	import BaseShareLink from '@/components/BaseShareLink'
-	import VideoList from "../components/VideoList.vue"
+	import BaseShareLink from '@/components/BaseShareLink.vue'
+	import VideoList from '@/components/VideoList.vue'
 
 	const store = useStore()
 	const router = useRouter()
-	const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
+	const route = useRoute()
+	const pageID = computed(() => +route.params.id)
+
+	// const allVideos = store.getters.getVideos
+	const allVideos = computed(() => store.getters['fetchVideos/getVideos'])
+	const history = store.getters['history/getHistory']
+
+	// const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
+	const video = computed(() => allVideos.value.find(v => v.id === pageID.value))
 	const categoryName = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
 	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // eoute.path
-
-	const allVideos = store.getters.getVideos
-	const history = store.getters['history/getHistory']
 
 	const plyrObj = ref(null)
 	const initPlyr = (videoValue = null) => {
@@ -114,7 +122,10 @@
 		}, 10500)
 	}
 
-	onMounted(() => {
+	onUpdated(() => document.title = video.value.title)
+	onMounted(async () => {
+		document.title = video.value.title
+			
 		initPlyr()
 
 		plyrObj.value.on('ended', goNextVideo)
@@ -128,9 +139,11 @@
 		}
 	})
 
-	const historyVideos = (history.map(item => allVideos.find(v => v.id === item))).reverse()
+
+	// если id есть в истории, но в сторе нет такого, будет ошибка
+	const historyVideos = (history.map(item => allVideos.value.find(v => v.id === item))).reverse()
 	const similarVIdeos = computed(() => {
-		return allVideos.filter(
+		return allVideos.value.filter(
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1
 		&& v.id !== video.value.id)
 	})
@@ -138,7 +151,7 @@
 
 	// доработать логику
 	// сделать включение и отключение авто-некст ролик
-	const nextVideo = computed(() => allVideos.filter(v => !history.includes(v.id))[0])
+	const nextVideo = computed(() => allVideos.value.filter(v => !history.includes(v.id))[0])
 	
 </script>
 

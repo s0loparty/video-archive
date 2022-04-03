@@ -26,6 +26,7 @@ export default {
 						commit('setVideos', Object.values(snapshot.val()))
 					} else {
 						console.log("No data available")
+						commit('setVideos', [])
 					}})
 				.catch((error) => console.error(error))
 		}

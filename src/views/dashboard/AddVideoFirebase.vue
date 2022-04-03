@@ -70,7 +70,7 @@
 
 	const categoryName = computed(() => categories.find(i => i.id === video.categoryId)?.title ?? 'unknown')
 
-	watch(fbLink, async (newValue, oldVAlue) => {
+	watch(fbLink, async (newValue, _) => {
 		if (!~newValue.indexOf('firebasestorage.googleapis.com')) {
 			return console.warn('bad url')
 		}
@@ -101,6 +101,25 @@
 				this.play()
 				this.width = 640
 				this.height = 360
+
+				// const createPreview = setInterval(() => {
+				// 	if (videoElement.value.currentTime < duration) {
+				// 		const item = document.createElement('canvas')
+				// 		item.setAttribute('style', 'display:inline-block;border: 1px dashed;border-radius:4px;margin-right:10px;padding:5px;')
+				// 		item.width = videoElement.value.width
+				// 		item.height = videoElement.value.height
+
+				// 		document.getElementById('canvases').append(item)
+
+				// 		const context = item.getContext('2d')
+				// 		context.drawImage(videoElement.value, 0, 0, this.width, this.height) // 320, 180
+
+				// 		// перемотка
+				// 		videoElement.value.currentTime = videoElement.value.currentTime += oneTick
+				// 	} else {
+				// 		clearInterval(createPreview)
+				// 	}
+				// }, 5000)
 
 				for (let i = 0; i < countPreviews; i++) {	
 					if (videoElement.value.currentTime < duration) {

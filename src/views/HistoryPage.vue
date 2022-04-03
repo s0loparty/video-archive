@@ -31,7 +31,8 @@
 	const store = useStore()
 	const categories = store.getters.getCategories
 	const history = store.getters['history/getHistory']
-	const allVideos = store.getters.getVideos
+	// const allVideos = store.getters.getVideos
+	const allVideos = store.getters['fetchVideos/getVideos']
 
 	const currentCategory = ref(0)
 	const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)

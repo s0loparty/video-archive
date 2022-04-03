@@ -71,7 +71,8 @@
 	import { useMobileMenu } from '@/composition/mobile-menu.js'
 
 	const store = useStore()
-	const videos = store.getters.getVideos
+	// const videos = store.getters.getVideos
+	const allVideos = store.getters['fetchVideos/getVideos']
 	const mobileMenu = useMobileMenu()
 
 	const SEARCH_MIN_LENGTH = 1
@@ -84,7 +85,7 @@
 
 	watch(inputQuery, (newValue, _) => {
 		if (newValue.length >= SEARCH_MIN_LENGTH) {
-			searchResults.value = videos
+			searchResults.value = allVideos
 				.filter(video => video.title
 					.toLowerCase()
 					.indexOf(inputQuery.value.toLowerCase()) !== -1)

@@ -69,7 +69,7 @@ export default {
 
 			return getters.getIsAuth
 
-			// 	const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`
+			// 	const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${import.meta.env.VITE_FB_KEY}`
 			// 	const { data } = await axios.post(url, {...adminValue, returnSecureToken: true})
 
 			// 	commit('setToken', data.idToken)

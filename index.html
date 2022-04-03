@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="icon" type="image/png" href="<%= BASE_URL %>favicon.png">
+	<link rel="icon" type="image/png" href="/favicon.png">
 	<title>Видео архив</title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +14,8 @@
 
 	<meta http-equiv="cache-control" content="max-age=31536000"/>
 
-	<meta property="og:image" content="./incor.jpg"/>
-	<meta property="twitter:image" content="./incor.jpg"/>
+	<meta property="og:image" content="/incor.jpg"/>
+	<meta property="twitter:image" content="/incor.jpg"/>
 	
 	<!-- Android -->
 	<meta name="theme-color" content="#2c3e50">
@@ -25,7 +25,7 @@
 	<meta name="apple-mobile-web-app-title" content="Видео архив"/>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="#2c3e50"/>
-	<link rel="apple-touch-icon" href="./incor.jpg"/>
+	<link rel="apple-touch-icon" href="/incor.jpg"/>
 
 	<meta name="description" content="Video archive In Cor Cadir and..."/>
 	<meta name="keywords" content="in cor cadit, ted ed, school of life, s0loparty, friends, life, brain"/>
@@ -43,13 +43,12 @@
 
 <body>
 	<noscript>
-		<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-				Please enable it to continue.</strong>
+		<strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 	</noscript>
 	<div id="app"></div>
-	<!-- built files will be auto injected -->
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+	<script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

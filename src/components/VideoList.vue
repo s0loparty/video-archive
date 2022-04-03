@@ -17,7 +17,7 @@
 
 <script setup>
 	import { computed, onUpdated, onMounted, ref } from 'vue'
-	import VideoItem from '../components/VideoItem.vue'
+	import VideoItem from '@/components/VideoItem.vue'
 
 	import LazyLoad from 'vanilla-lazyload'
 	const backgroundLazy = ref(null)

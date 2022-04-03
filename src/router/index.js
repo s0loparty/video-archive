@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store'
 
@@ -70,7 +71,7 @@ const routes = [
 ]
 
 const router = createRouter({
-	history: createWebHashHistory(process.env.BASE_URL),
+	history: createWebHashHistory(import.meta.env.BASE_URL),
 	routes,
 
 	// https://next.router.vuejs.org/guide/advanced/scroll-behavior.html#scroll-behavior
@@ -81,11 +82,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	// SET TITLE
-	if (to.meta.title) {
-		document.title = to.meta.title
-	}
-
 	// MOBILE MENU
 	if (store.getters.mobileMenu) {
 		store.commit('toggleMobileMenu')
@@ -106,15 +102,22 @@ router.beforeEach((to, from, next) => {
 
 	// VIEW VIDEO
 	if (to.name === 'video-page') {
-		const videos = store.getters.getVideos
+		// const allVideos = computed(() => store.getters['fetchVideos/getVideos'])
 		const pageID = +to.params.id
+
+		// const toVideo = allVideos.value.find(i => i.id === pageID)
+
+		// if (!toVideo) return next('/404')
 		
-		if (!videos.some(v => v.id === pageID)) return next('/404')
-		
-		document.title = store.getters.getVideos.find(v => v.id === pageID).title
+		// document.title = toVideo.title
 
 		store.commit('history/addIdInHistory', pageID)
 		store.commit('history/updateStorage')
+	} else {
+		// SET TITLE
+		if (to.meta.title) {
+			document.title = to.meta.title
+		}
 	}
 
 	next()
