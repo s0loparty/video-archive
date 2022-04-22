@@ -19,9 +19,11 @@ export default {
 	actions: {
 		async requestVideos({ commit }) {
 			const dbRef = DatabaseRef(getDatabase())
+
+			// можно заменить DatabaseGet на onValue
 			DatabaseGet(child(dbRef, `video-archive`))
 				.then((snapshot) => {
-					console.log('snapshot: ', snapshot)
+					console.log('snapshot: ', snapshot.val())
 					if (snapshot.exists()) {
 						commit('setVideos', Object.values(snapshot.val()))
 					} else {

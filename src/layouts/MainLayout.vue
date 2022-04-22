@@ -1,7 +1,9 @@
 <template>
 	<TheHeader></TheHeader>
 	<div v-if="allVideos !== null && !allVideos.length">
-		<h1>Нет видеороликов</h1>
+		<div class="container">
+			<h1>Нет видеороликов</h1>
+		</div>
 	</div>
 	<div v-else>
 		<router-view></router-view>

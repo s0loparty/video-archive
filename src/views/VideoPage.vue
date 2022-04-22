@@ -1,10 +1,12 @@
 <template>
 	<div class="container">
-		<div v-if="allVideos !== null & allVideos.length" class="vpage">
+		<div class="vpage">
 			<div :class="['vpage__wrap', { 'vpage__wrap--col-3': similarVIdeos.length }]">
 				<div class="vpage__content">
-					<div class="vpage__player-wrap" :style="`background-image: url(${video.preview});`">
-						<video id="player" playsinline controls>
+
+					<!-- :style="`background-image: url(${video.preview});`" -->
+					<div class="vpage__player-wrap">
+						<video id="player" playsinline controls :data-poster="poster">
 							<source :src="video.source" type="video/mp4" />
 						</video>
 					</div>
@@ -45,9 +47,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="vpage">
-			<h1>Нет роликов</h1>
-		</div>
 	</div>
 </template>
 
@@ -72,24 +71,32 @@
 
 	// const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
 	const video = computed(() => allVideos.value.find(v => v.id === pageID.value))
+	const poster = ref(video.value.preview)
 	const categoryName = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
-	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // eoute.path
+	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // route.path
 
 	const plyrObj = ref(null)
 	const initPlyr = (videoValue = null) => {
 		videoValue = videoValue ?? video.value
-		plyrObj.value = new Plyr('#player')
-		plyrObj.value.source = {
-			type: 'video',
-			title: videoValue.title,
-			sources: [{ src: videoValue.source, src: videoValue.source }],
-			poster: videoValue.preview
-		}
+		poster.value = videoValue.preview
+
+		// console.log('videoValue:', videoValue)
+
+		try {
+			plyrObj.value = new Plyr('#player')
+			plyrObj.value.sources = {
+				type: 'video',
+				title: videoValue.title,
+				sources: [{ src: videoValue.source }],
+				// poster: poster.value
+			}
+		} catch (error) {console.error(error)}
 	}
 
 	const goNextVideo = () => {
 		let item = document.querySelector(`.video__item[data-id="${nextVideo.value.id}"]`)
 
+		if (!similarVIdeos.value.length) return
 		if (!item) {
 			const _temp_item = similarVIdeos.value.concat(historyVideos.filter(i => {
 				return video.value.id !== i.id && similarVIdeos.value.indexOf(i) < 0
@@ -133,6 +140,7 @@
 	watch(video, (newVideoValue, _) => {
 		if (newVideoValue) {
 			plyrObj.value.destroy()
+
 			initPlyr(newVideoValue)
 
 			plyrObj.value.on('ended', goNextVideo)
@@ -140,7 +148,7 @@
 	})
 
 
-	// если id есть в истории, но в сторе нет такого, будет ошибка
+	// если id есть в истории, но в сторе нет, будет ошибка
 	const historyVideos = (history.map(item => allVideos.value.find(v => v.id === item))).reverse()
 	const similarVIdeos = computed(() => {
 		return allVideos.value.filter(
