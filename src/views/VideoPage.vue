@@ -149,7 +149,10 @@
 
 
 	// если id есть в истории, но в сторе нет, будет ошибка
-	const historyVideos = (history.map(item => allVideos.value.find(v => v.id === item))).reverse()
+	const historyVideos = (history.map(item => allVideos.value.find(v => v.id === item)))
+		.filter(Boolean)
+		.reverse()
+	
 	const similarVIdeos = computed(() => {
 		return allVideos.value.filter(
 		v => v.title.indexOf(video.value.title.split(' ')[0]) !== -1

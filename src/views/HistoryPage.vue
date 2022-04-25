@@ -37,7 +37,11 @@
 	const currentCategory = ref(0)
 	const categoryName = computed(() => !currentCategory.value ? 0 : categories.find(i => i.id === currentCategory.value).title)
 
-	const videos = history.map(item => allVideos.find(i => i.id == item)).reverse()
+	// const videos = history.map(item => allVideos.find(i => i.id == item)).reverse()
+	const videos = history
+		.map(item => allVideos.find(i => i.id === item))
+		.filter(Boolean)
+		.reverse()
 </script>
 
 <style src="@vueform/multiselect/themes/default.css"></style>
