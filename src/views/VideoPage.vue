@@ -1,6 +1,9 @@
 <template>
 	<div class="container">
-		<div class="vpage">
+		<div
+			v-if="video"
+			class="vpage"
+		>
 			<div :class="['vpage__wrap', { 'vpage__wrap--col-3': similarVIdeos.length }]">
 				<div class="vpage__content">
 					<!-- :style="`background-image: url(${video.preview});`" -->
@@ -102,10 +105,10 @@ const history = store.getters['history/getHistory'];
 
 // const video = computed(() => store.getters.getVideos.find(v => v.id === +router.currentRoute.value.params.id)) // +route.params.id
 const video = computed(() => allVideos.value.find((v) => v.id === pageID.value));
-const poster = ref(video.value?.preview);
-const categoryName = computed(
-	() => store.getters.getCategories.find((c) => c.id === video.value.categoryId).title
-);
+const poster = ref(video.value.preview);
+const categoryName = computed(() => {
+	return store.getters.getCategories.find((c) => c.id === video.value.categoryId).title;
+});
 const shareLink = computed(() => {
 	return location.origin + '/#' + router.currentRoute.value.path;
 }); // route.path
@@ -113,7 +116,7 @@ const shareLink = computed(() => {
 const plyrObj = ref(null);
 const initPlyr = (videoValue = null) => {
 	videoValue = videoValue ?? video.value;
-	poster.value = videoValue?.preview;
+	poster.value = videoValue.preview;
 
 	// console.log('videoValue:', videoValue)
 
