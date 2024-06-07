@@ -73,7 +73,9 @@
 	const video = computed(() => allVideos.value.find(v => v.id === pageID.value))
 	const poster = ref(video.value.preview)
 	const categoryName = computed(() => store.getters.getCategories.find(c => c.id === video.value.categoryId).title)
-	const shareLink = computed(() => location.origin + router.currentRoute.value.path) // route.path
+	const shareLink = computed(() => {
+		return location.origin + '/#' + router.currentRoute.value.path
+	}) // route.path
 
 	const plyrObj = ref(null)
 	const initPlyr = (videoValue = null) => {
